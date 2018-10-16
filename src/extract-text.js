@@ -18,13 +18,7 @@ function ignorePath (path) {
     if(path.parent && path.parent.type === "ImportDeclaration")
         return true
 
-    // var jsxAttributeParentName = path.parent && path.parent.name && path.parent.type === "JSXAttribute" ? path.parent.name.name
-    //     : path.parentPath && path.parentPath.parent && path.parentPath.parent.type === "JSXAttribute" ? path.parentPath.parent.name.name
-    //     : null
     var jsxAttributeParent = findParentWithType(path, "JSXAttribute");
-
-
-    
     var jsxAttributeParentName = jsxAttributeParent && jsxAttributeParent.name.name;
 
     if(jsxAttributeParentName && (
@@ -34,10 +28,10 @@ function ignorePath (path) {
             && jsxAttributeParentName !== "placeholder"
             ))
         return true;
-    
-    if(path.parent.type === "CallExpression" && path.parent.callee.name === "$") {
-        return true;
-    }
+
+    // if(findParentWithType(path, "CallExpression")) {
+    //     return true;
+    // }
 
     const value = path.node.value.trim();
 

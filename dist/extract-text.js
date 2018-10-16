@@ -32,17 +32,12 @@ function findParentWithType(path, type) {
 }
 
 function ignorePath(path) {
-  if (path.parent && path.parent.type === "ImportDeclaration") return true; // var jsxAttributeParentName = path.parent && path.parent.name && path.parent.type === "JSXAttribute" ? path.parent.name.name
-  //     : path.parentPath && path.parentPath.parent && path.parentPath.parent.type === "JSXAttribute" ? path.parentPath.parent.name.name
-  //     : null
-
+  if (path.parent && path.parent.type === "ImportDeclaration") return true;
   var jsxAttributeParent = findParentWithType(path, "JSXAttribute");
   var jsxAttributeParentName = jsxAttributeParent && jsxAttributeParent.name.name;
-  if (jsxAttributeParentName && jsxAttributeParentName !== "label" && jsxAttributeParentName !== "value" && jsxAttributeParentName !== "aria-label" && jsxAttributeParentName !== "placeholder") return true;
-
-  if (path.parent.type === "CallExpression" && path.parent.callee.name === "$") {
-    return true;
-  }
+  if (jsxAttributeParentName && jsxAttributeParentName !== "label" && jsxAttributeParentName !== "value" && jsxAttributeParentName !== "aria-label" && jsxAttributeParentName !== "placeholder") return true; // if(findParentWithType(path, "CallExpression")) {
+  //     return true;
+  // }
 
   var value = path.node.value.trim();
 
