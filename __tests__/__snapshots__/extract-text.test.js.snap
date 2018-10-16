@@ -3,10 +3,11 @@
 exports[`test 1 1`] = `
 Object {
   "hashmap": Object {
-    "2951570100": "Este texto precisa ser extraído",
+    "2951570100": "este-texto-precisa-ser-extraido",
   },
+  "ignored": Object {},
   "strings": Object {
-    "este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
+    "este-texto-precisa-ser-extraido.2951570100": "Este texto precisa ser extraído",
   },
 }
 `;
@@ -14,12 +15,76 @@ Object {
 exports[`test com jsx 1`] = `
 Object {
   "hashmap": Object {
-    "2951570100": "Este texto precisa ser extraído",
-    "4261676902": "Este é um label e precisa ser extraído",
+    "1090290174": "ignorethisword",
+    "1836160639": "http-www-ignorar-esta-url-com-br",
+    "2639710208": "mb-2-ignorethis",
+    "2951570100": "este-texto-precisa-ser-extraido",
+    "4261676902": "este-e-um-label-e-precisa-ser-extraido",
+    "4261757570": "nao-reembolsavel",
+    "576345883": "3",
+    "885157645": "react",
+  },
+  "ignored": Object {
+    "3.576345883": "3",
+    "http-www-ignorar-esta-url-com-br.1836160639": "http://www.ignorar.esta.url.com.br",
+    "ignorethisword.1090290174": "IgnoreThisWord",
+    "mb-2-ignorethis.2639710208": "mb-2 ignorethis",
+    "react.885157645": "react",
   },
   "strings": Object {
-    "este-e-um-label-e-precisa-ser-extraido": "Este é um label e precisa ser extraído",
-    "este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
+    "este-e-um-label-e-precisa-ser-extraido.4261676902": "Este é um label e precisa ser extraído",
+    "este-texto-precisa-ser-extraido.2951570100": "Este texto precisa ser extraído",
+    "nao-reembolsavel.4261757570": "Não reembolsável",
   },
+}
+`;
+
+exports[`test com jsx 2 1`] = `
+Object {
+  "hashmap": Object {
+    "576345883": "3",
+    "74761743": "mb-2-ignorethis-second-time",
+    "885157645": "react",
+  },
+  "ignored": Object {
+    "3.576345883": "3",
+    "mb-2-ignorethis-second-time.74761743": "mb-2 ignorethis second-time",
+    "react.885157645": "react",
+  },
+  "strings": Object {},
+}
+`;
+
+exports[`teste ignorar jquery 1`] = `
+Object {
+  "hashmap": Object {
+    "1997815419": "selectorjquery",
+    "2383043738": "jquery",
+  },
+  "ignored": Object {
+    "jquery.2383043738": "jquery",
+    "selectorjquery.1997815419": ".selectorjquery",
+  },
+  "strings": Object {},
+}
+`;
+
+exports[`teste template 2 1`] = `
+Object {
+  "hashmap": Object {},
+  "ignored": Object {},
+  "strings": Object {},
+}
+`;
+
+exports[`teste template com jsx 1`] = `
+Object {
+  "hashmap": Object {
+    "3448505072": "ignorethis",
+  },
+  "ignored": Object {
+    "ignorethis.3448505072": "ignorethis",
+  },
+  "strings": Object {},
 }
 `;

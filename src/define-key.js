@@ -1,12 +1,13 @@
 export default function (text) {
-    while (text[text.length - 1].match(/\W/)) {
-        text = text.substring(0, text.length - 1)
-    }
-    const r = text
+    if(!text && text.length === 0) return;
+    var r = text
         .normalize('NFD').replace(/[\u0300-\u036f]/g, "")
         .replace(/\W/g, "-")
         .replace(/\-{2,}/g, "-")
         .toLowerCase()
+    
+    if(r[0] === "-") r = r.substring(1)
+    if(r[r.length - 1] === "-") r = r.substring(0, r.length - 1)
     
     return r
 }

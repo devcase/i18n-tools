@@ -15,7 +15,9 @@ var _uniq = _interopRequireDefault(require("lodash/uniq"));
 
 var _glob = _interopRequireDefault(require("glob"));
 
-_commander.default.option("-d, --out-dir [out]", "Compile an input directory of modules into an output directory");
+_commander.default.option("-d, --out-dir [out]", "Compile an input directory of modules into an output directory", "i18n");
+
+_commander.default.option("--delete-dir-on-start", "Delete the out directory before compilation");
 
 function parseArgv(args) {
   //

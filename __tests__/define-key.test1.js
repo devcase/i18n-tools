@@ -15,3 +15,7 @@ test("Marcadores", () => {
 test("Formato: +{código país}{código estado}{telefone}", () => {
     expect(defineKey("Formato: +{código país}{código estado}{telefone}")).toBe("formato-codigo-pais-codigo-estado-telefone");
 })
+
+test("(total com impostos e taxas)", () => {
+    expect(defineKey("(total com impostos e taxas)")).toBe("total-com-impostos-e-taxas");
+})

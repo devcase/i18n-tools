@@ -1,0 +1,16 @@
+js = .js
+utf-8 = UTF-8
+translations-pt-br-ftl = translations.pt-BR.ftl
+ignored-pt-br-ftl = ignored.pt-BR.ftl
+hashmap-i18n = hashmap.i18n
+d-out-dir-out = -d, --out-dir [out]
+compile-an-input-directory-of-modules-into-an-output-directory = Compile an input directory of modules into an output directory
+i18n = i18n
+delete-dir-on-start = --delete-dir-on-start
+delete-the-out-directory-before-compilation = Delete the out directory before compilation
+nfd = NFD
+jsxattribute = JSXAttribute
+aria-label = aria-label
+module = module
+jsx = jsx
+erro-no-arquivo = Erro no arquivo

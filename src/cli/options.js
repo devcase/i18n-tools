@@ -5,7 +5,14 @@ import glob from 'glob';
 commander.option(
     "-d, --out-dir [out]",
     "Compile an input directory of modules into an output directory",
+    "i18n"
 );
+
+commander.option(
+    "--delete-dir-on-start",
+    "Delete the out directory before compilation",
+);
+
 
 export default function parseArgv(args) {
     //
