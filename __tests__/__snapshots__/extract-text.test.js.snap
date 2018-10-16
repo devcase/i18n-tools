@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test 1 1`] = `
+Object {
+  "hashmap": Object {
+    "2951570100": "Este texto precisa ser extraído",
+  },
+  "strings": Object {
+    "este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
+  },
+}
+`;
+
+exports[`test com jsx 1`] = `
+Object {
+  "hashmap": Object {
+    "2951570100": "Este texto precisa ser extraído",
+    "4261676902": "Este é um label e precisa ser extraído",
+  },
+  "strings": Object {
+    "este-e-um-label-e-precisa-ser-extraido": "Este é um label e precisa ser extraído",
+    "este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
+  },
+}
+`;

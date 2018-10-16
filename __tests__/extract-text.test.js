@@ -1,17 +1,11 @@
-import extractText from '../extract-text'
+import extractText from '../src/extract-text'
 
 test("test 1", () => {
     const code = `
         var x = "Este texto precisa ser extraído"
     `
     const results = extractText(code);
-    expect(results).toHaveLength(1)
-
-    expect(results[0]).toMatchObject({
-        key: "este-texto-precisa-ser-extraido",
-        value: "Este texto precisa ser extraído",
-        hash: 2951570100
-    })
+    expect(results).toMatchSnapshot()
 })
 
 test("test com jsx", () => {

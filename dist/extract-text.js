@@ -40,11 +40,11 @@ function extractText(input) {
   var code = input;
   var options = {
     sourceType: "module",
-    plugins: ["jsx"]
+    plugins: ["jsx", "objectRestSpread"]
   };
   var ast = babelParser.parse(code, options);
-  var strings = [];
-  var hashset = new Set();
+  var strings = {};
+  var hashmap = {};
 
   function processStringPath(path) {
     if (ignorePath(path)) {
@@ -60,12 +60,9 @@ function extractText(input) {
 
     var hash = _farmhash.default.hash32(value);
 
-    if (!hashset.has(hash)) {
-      strings.push({
-        key: (0, _defineKey.default)(value),
-        value: value,
-        hash: hash
-      });
+    if (!hashmap[hash]) {
+      strings[(0, _defineKey.default)(value)] = value;
+      hashmap[hash] = value;
     }
   }
 
@@ -74,5 +71,8 @@ function extractText(input) {
     JSXText: processStringPath
   };
   (0, _traverse.default)(ast, visitor);
-  return strings;
+  return {
+    strings: strings,
+    hashmap: hashmap
+  };
 }

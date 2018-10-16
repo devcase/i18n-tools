@@ -30,11 +30,12 @@ export default function extractText(input) {
 
     const options = {
         sourceType: "module",
-        plugins: ["jsx"]
+        plugins: ["jsx", "objectRestSpread"]
     }
     const ast = babelParser.parse(code, options);
-    const strings = []
-    const hashset = new Set();
+    const strings = {}
+    const hashmap = {}
+    
 
     function processStringPath(path) {
         if(ignorePath(path)) {
@@ -47,12 +48,9 @@ export default function extractText(input) {
             value = value.substring(0, value.lenght - 1);
         }
         let hash = farmhash.hash32(value);
-        if(!hashset.has(hash)) {
-            strings.push({
-                key: defineKey(value),
-                value: value,
-                hash: hash
-            })
+        if(!hashmap[hash]) {
+            strings[defineKey(value)] = value;
+            hashmap[hash] = value
         }
     }
     
@@ -62,5 +60,5 @@ export default function extractText(input) {
     };
     traverse(ast, visitor);
     
-    return strings
+    return {strings, hashmap}
 }
