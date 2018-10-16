@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test com jsx 1`] = `
+Array [
+  Object {
+    "hash": 4261676902,
+    "key": "este-e-um-label-e-precisa-ser-extraido",
+    "value": "Este é um label e precisa ser extraído",
+  },
+  Object {
+    "hash": 2951570100,
+    "key": "este-texto-precisa-ser-extraido",
+    "value": "Este texto precisa ser extraído",
+  },
+]
+`;
