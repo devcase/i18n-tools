@@ -97,10 +97,10 @@ export default async function (cliOptions) {
     const ignoredDest = getDest("ignored.pt-BR.ftl", cliOptions.outDir)
     const hashMapDest = getDest("hashmap.i18n", cliOptions.outDir)
 
-    Object.keys(allstrings).forEach(key => {
+    Object.keys(allstrings).sort((a,b) => ('' + a).localeCompare(b)).forEach(key => {
         fs.appendFileSync(stringDest, `${key.substring(0, key.indexOf("."))} = ${allstrings[key]}\n`)
     })
-    Object.keys(allignored).forEach(key => {
+    Object.keys(allignored).sort((a,b) => ('' + a).localeCompare(b)).forEach(key => {
         fs.appendFileSync(ignoredDest, `${key.substring(0, key.indexOf("."))} = ${allignored[key]}\n`)
     })
     fs.appendFileSync(hashMapDest, JSON.stringify(allhashmap, null, 2))

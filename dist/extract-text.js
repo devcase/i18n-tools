@@ -31,28 +31,33 @@ function findParentWithType(path, type) {
   return findParentWithType(path.parentPath, type);
 }
 
-function ignorePath(path) {
-  if (path.parent && path.parent.type === "ImportDeclaration") return true;
+function ignorePath(path, options) {
+  var ignoredRegex = [/[a-z][A-Z]/, /[a-zA-Z]\.[a-zA-Z]/, /^http/, /^\//, /\_/, /^\./, /^\#/, /px$/, /^[A-Z][A-Z][A-Z]$/, /^(accept|acceptCharset|accessKey|action|allowFullScreen|alt|async|autoComplete|autoFocus|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|colSpan|cols|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|default|defer|dir|disabled|download|draggable|encType|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|icon|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loop|low|manifest|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|noValidate|nonce|open|optimum|pattern|placeholder|poster|preload|profile|radioGroup|readOnly|rel|required|reversed|role|rowSpan|rows|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|type|useMap|value|width|wmode|wrap)$/];
+  var requiredRegex = [/[a-zA-Z]/];
+  var validJsxAttributes = ["label", "value", "aria-label", "title", "placeholder"];
+  if (findParentWithType(path, "ImportDeclaration")) return true;
   var jsxAttributeParent = findParentWithType(path, "JSXAttribute");
   var jsxAttributeParentName = jsxAttributeParent && jsxAttributeParent.name.name;
-  if (jsxAttributeParentName && jsxAttributeParentName !== "label" && jsxAttributeParentName !== "value" && jsxAttributeParentName !== "aria-label" && jsxAttributeParentName !== "placeholder") return true; // if(findParentWithType(path, "CallExpression")) {
+  if (jsxAttributeParentName && !validJsxAttributes.find(function (t) {
+    return t === jsxAttributeParentName;
+  })) return true; // if(findParentWithType(path, "CallExpression")) {
   //     return true;
   // }
 
   var value = path.node.value.trim();
 
-  if (value.match(/[a-zA-Z]/) === null) {
+  if (requiredRegex.find(function (regexp) {
+    return !value.match(regexp);
+  })) {
     return true;
   }
 
-  if (value.match(/[a-z][A-Z]/) !== null) {
+  if (ignoredRegex.find(function (regexp) {
+    return value.match(regexp);
+  })) {
     return true;
   }
 
-  if (value.indexOf("http") === 0) return true;
-  if (value.indexOf("/") === 0) return true;
-  if (value.indexOf("_") >= 0) return true;
-  if (new Set(['accept', 'acceptCharset', 'accessKey', 'action', 'allowFullScreen', 'alt', 'async', 'autoComplete', 'autoFocus', 'autoPlay', 'capture', 'cellPadding', 'cellSpacing', 'challenge', 'charSet', 'checked', 'cite', 'classID', 'className', 'colSpan', 'cols', 'content', 'contentEditable', 'contextMenu', 'controls', 'controlsList', 'coords', 'crossOrigin', 'data', 'dateTime', 'default', 'defer', 'dir', 'disabled', 'download', 'draggable', 'encType', 'form', 'formAction', 'formEncType', 'formMethod', 'formNoValidate', 'formTarget', 'frameBorder', 'headers', 'height', 'hidden', 'high', 'href', 'hrefLang', 'htmlFor', 'httpEquiv', 'icon', 'id', 'inputMode', 'integrity', 'is', 'keyParams', 'keyType', 'kind', 'label', 'lang', 'list', 'loop', 'low', 'manifest', 'marginHeight', 'marginWidth', 'max', 'maxLength', 'media', 'mediaGroup', 'method', 'min', 'minLength', 'multiple', 'muted', 'name', 'noValidate', 'nonce', 'open', 'optimum', 'pattern', 'placeholder', 'poster', 'preload', 'profile', 'radioGroup', 'readOnly', 'rel', 'required', 'reversed', 'role', 'rowSpan', 'rows', 'sandbox', 'scope', 'scoped', 'scrolling', 'seamless', 'selected', 'shape', 'size', 'sizes', 'span', 'spellCheck', 'src', 'srcDoc', 'srcLang', 'srcSet', 'start', 'step', 'style', 'summary', 'tabIndex', 'target', 'title', 'type', 'useMap', 'value', 'width', 'wmode', 'wrap']).has(value)) return true;
   return false;
 }
 

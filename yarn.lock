@@ -1593,6 +1593,10 @@ find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
+fluent@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/fluent/-/fluent-0.8.1.tgz#7fb1608264466b1ac750e1be29a6d9f27af82b0c"
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
