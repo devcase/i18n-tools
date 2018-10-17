@@ -19,7 +19,7 @@ export default declare((api, options) => {
                 let nodevalue = path.node.value.trim();
                 if (nodevalue.indexOf("i18n:") === 0) nodevalue = nodevalue.substring("i18n:".length)
                 let key = defineKey(nodevalue);
-                path.replaceWith(t.stringLiteral(bundle.getMessage(key) || "???"));
+                path.replaceWith(t.stringLiteral(bundle.getMessage(key) || nodevalue));
                 path.skip();
             }
         }

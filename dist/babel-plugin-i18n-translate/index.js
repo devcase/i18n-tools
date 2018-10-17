@@ -31,14 +31,13 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
 
   var bundle = new _fluent.FluentBundle(locale);
   bundle.addMessages((0, _fluent.ftl)([translationFileContents]));
-  console.log(bundle.getMessage("h3527609692_ex-nome-sobrenome-nome-setor-nome"));
   var manipulator = {
     exit: function exit(path) {
       if (!(0, _ignoreAstPath.default)(path)) {
         var nodevalue = path.node.value.trim();
         if (nodevalue.indexOf("i18n:") === 0) nodevalue = nodevalue.substring("i18n:".length);
         var key = (0, _defineKey.default)(nodevalue);
-        path.replaceWith(_core.types.stringLiteral(bundle.getMessage(key) || "???"));
+        path.replaceWith(_core.types.stringLiteral(bundle.getMessage(key) || nodevalue));
         path.skip();
       }
     }

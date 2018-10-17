@@ -24,13 +24,14 @@ O extrator de texto e o plugin seguem algumas regras para identificar quais text
 ## Exemplo
 
 Meu código:
-
 ```
 import React from 'react'
 
 export default function (props) {
     var value = {
-        "text": "Fulano da Silva",
+        "label": "Incluir este texto",
+        text: "Este texto também",
+        "constantName": "Ignore this text",
         "error": "i18n:Erro de entrada"
     };
     return <div className="my-ignored-classname">
@@ -41,14 +42,13 @@ export default function (props) {
 ```
 
 Gera o arquivo `i18n/translations.ftl`:
-
 ```
-erro-de-entrada.109488527 = Erro de entrada
-meu-texto-internacionalizavel.3251814319 = Meu texto internacionalizável
-nome-do-usuario.2994568279 = Nome do usuário
+h1105371475_erro-de-entrada = Erro de entrada
+h1350806831_incluir-este-texto = Incluir este texto
+h2994568279_nome-do-usuario = Nome do usuário
+h3122683021_este-texto-tambem = Este texto também
+h3251814319_meu-texto-internacionalizavel = Meu texto internacionalizável
 ```
-
-
 
 ## Regras
 
@@ -61,6 +61,9 @@ TODO
 TODO
 
 ### Textos traduzidos automaticamente
+
+TODO
+
 
 
 
