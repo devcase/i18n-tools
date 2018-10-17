@@ -40,5 +40,8 @@
   },
   "bin": {
     "i18n-extract": "./dist/cli/i18n-extract.js"
+  },
+  "engines": {
+    "node": ">= 6"
   }
 }
