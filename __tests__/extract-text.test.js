@@ -80,7 +80,9 @@ test("README", () => {
 
     export default function (props) {
         var value = {
-            "text": "Fulano da Silva",
+            "label": "Incluir este texto",
+            text: "Este texto também",
+            "constantName": "Ignore this text",
             "error": "i18n:Erro de entrada"
         };
         return <div className="my-ignored-classname">

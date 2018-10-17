@@ -38,11 +38,17 @@ function deleteDir(path) {
 export default async function (cliOptions) {
     const filenames = cliOptions.filenames;
 
-    if (cliOptions.deleteDirOnStart) {
-        deleteDir(cliOptions.outDir);
-    }
 
     mkdirpSync(cliOptions.outDir)
+    const stringDest = getDest("translations.ftl", cliOptions.outDir)
+    const ignoredDest = getDest("ignored.ftl", cliOptions.outDir)
+    const hashMapDest = getDest("hashmap.i18n", cliOptions.outDir)
+    if (cliOptions.deleteDirOnStart) {
+        if(fs.existsSync(stringDest)) fs.unlinkSync(stringDest)
+        if(fs.existsSync(ignoredDest)) fs.unlinkSync(ignoredDest)
+        if(fs.existsSync(hashMapDest)) fs.unlinkSync(hashMapDest)
+    }
+
 
     function getDest(filename, base) {
         if (cliOptions.relative) {
@@ -92,10 +98,6 @@ export default async function (cliOptions) {
     }
 
     await Promise.all(filenames.map(filename => handle(filename)))
-
-    const stringDest = getDest("translations.ftl", cliOptions.outDir)
-    const ignoredDest = getDest("ignored.ftl", cliOptions.outDir)
-    const hashMapDest = getDest("hashmap.i18n", cliOptions.outDir)
 
     Object.keys(allstrings).sort((a,b) => (a.substring(11)).localeCompare(b.substring(11))).forEach(key => {
         fs.appendFileSync(stringDest, `${key} = ${allstrings[key]}\n`)

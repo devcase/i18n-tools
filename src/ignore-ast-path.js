@@ -12,6 +12,7 @@ function findParentWithType(path, type) {
 
 export default function (path, options) {
 
+    //todo - pegar das opções estes parâmetros
     let ignoredRegex = [
         /[a-z][A-Z]/,
         /[a-zA-Z]\.[a-zA-Z]/,
@@ -29,7 +30,9 @@ export default function (path, options) {
         /[a-zA-Z]/
     ]
 
-    let validJsxAttributes = ["label", "value", "aria-label", "title", "placeholder"]
+    let validJsxAttributes = ["label", "aria-label", "title", "placeholder"]
+    let validObjectPropertyKeys = ["text", "label", "labelPlural", "hint", "message", "placeholder"]
+    let validCallExpressionCallees = [/NotificationManager/]
 
     const value = path.node.value.trim();
 
@@ -38,19 +41,45 @@ export default function (path, options) {
     }
 
     if(findParentWithType(path, "ImportDeclaration"))
-        return true
+        return true;
 
     var jsxAttributeParent = findParentWithType(path, "JSXAttribute");
     var jsxAttributeParentName = jsxAttributeParent && jsxAttributeParent.name.name;
 
-    if(jsxAttributeParentName && !validJsxAttributes.find(t => t === jsxAttributeParentName))
-        return true;
+    var _return = true;
 
-    if(findParentWithType(path, "CallExpression")) {
-        return true;
+    if(jsxAttributeParentName) {
+        if(validJsxAttributes.find(t => t === jsxAttributeParentName)) {
+            return false;
+        } else {
+            _return = true;
+        }
+    } 
+
+    var objectProperty;
+    if(objectProperty = findParentWithType(path, "ObjectProperty")) {
+        if(objectProperty.key === path.node) {
+            return true;
+        }
+        if(validObjectPropertyKeys.find(k => k === objectProperty.key.value || k === objectProperty.key.name)) {
+            return false;
+        } else {
+            _return = true;
+        }
     }
-    if(findParentWithType(path, "ObjectExpression")) {
-        return true;
+    
+    var callExpression
+    if(callExpression = findParentWithType(path, "CallExpression")) {
+        var calleeName = !callExpression.callee ? undefined 
+            : callExpression.callee.name ? callExpression.callee.name
+            : callExpression.callee.object && callExpression.callee.property ? callExpression.callee.object.name + "." + callExpression.callee.property.name
+            : callExpression.callee.property ? callExpression.callee.property.name
+            : undefined
+        if(validCallExpressionCallees.find(c => calleeName && c instanceof RegExp ? calleeName.match(c) : c === calleeName)) {
+            return false;
+        } else {
+            _return = true;
+        }
     }
 
     if(requiredRegex.find(regexp => !value.match(regexp))) {
@@ -61,5 +90,9 @@ export default function (path, options) {
         return true;
     }
 
-    return false;
+    if(path.node.type === "JSXText") {
+        return false;
+    }
+
+    return _return;
 }

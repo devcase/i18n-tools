@@ -35,16 +35,16 @@ export default function extractText(input, filename, options) {
 
 
         value = value.trim();
-        if(value[value.length - 1] === ":") {
+        while(value[value.length - 1] === ":") {
             value = value.substring(0, value.length - 1);
+            value = value.trim();
         }
-        value = value.trim();
         if(value === "") return;
 
+        value = value.indexOf("i18n:") === 0 ? value.substring(5): value
         let hash = farmhash.hash32(value);
         
         if(!hashmap[hash]) {
-            value = value.indexOf("i18n:") === 0 ? value.substring(5): value
             let key = defineKey(value);
             hashmap[hash] = key;
             if(ignorePath(path)) {

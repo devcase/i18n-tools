@@ -3,25 +3,33 @@
 exports[`README 1`] = `
 Object {
   "hashmap": Object {
-    "109488527": "h1105371475_erro-de-entrada",
-    "1326213232": "h1326213232_fulano-da-silva",
+    "1105371475": "h1105371475_erro-de-entrada",
+    "1350806831": "h1350806831_incluir-este-texto",
+    "2161373089": "h2161373089_label",
     "2994568279": "h2994568279_nome-do-usuario",
+    "3102868937": "h3102868937_constantname",
+    "3122683021": "h3122683021_este-texto-tambem",
     "3251541170": "h3251541170_error",
     "3251814319": "h3251814319_meu-texto-internacionalizavel",
     "3375576029": "h3375576029_text",
+    "3796890060": "h3796890060_ignore-this-text",
     "885157645": "h0885157645_react",
     "922874748": "h0922874748_my-ignored-classname",
   },
   "ignored": Object {
     "h0885157645_react": "react",
     "h0922874748_my-ignored-classname": "my-ignored-classname",
-    "h1326213232_fulano-da-silva": "Fulano da Silva",
+    "h2161373089_label": "label",
+    "h3102868937_constantname": "constantName",
     "h3251541170_error": "error",
     "h3375576029_text": "text",
+    "h3796890060_ignore-this-text": "Ignore this text",
   },
   "strings": Object {
     "h1105371475_erro-de-entrada": "Erro de entrada",
+    "h1350806831_incluir-este-texto": "Incluir este texto",
     "h2994568279_nome-do-usuario": "Nome do usuário",
+    "h3122683021_este-texto-tambem": "Este texto também",
     "h3251814319_meu-texto-internacionalizavel": "Meu texto internacionalizável",
   },
 }

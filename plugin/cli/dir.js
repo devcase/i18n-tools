@@ -58,7 +58,7 @@ function _ref() {
   _ref = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee3(cliOptions) {
-    var filenames, stringDest, ignoredDest, hashMapDest, getDest, handle, _handle, allstrings, allhashmap, allignored, handleFile, _handleFile;
+    var filenames, getDest, handle, _handle, allstrings, allhashmap, allignored, handleFile, _handleFile, stringDest, ignoredDest, hashMapDest;
 
     return _regenerator.default.wrap(function _callee3$(_context3) {
       while (1) {
@@ -165,26 +165,24 @@ function _ref() {
             };
 
             filenames = cliOptions.filenames;
-            (0, _mkdirp.sync)(cliOptions.outDir);
-            stringDest = getDest("translations.ftl", cliOptions.outDir);
-            ignoredDest = getDest("ignored.ftl", cliOptions.outDir);
-            hashMapDest = getDest("hashmap.i18n", cliOptions.outDir);
 
             if (cliOptions.deleteDirOnStart) {
-              if (_fs.default.existsSync(stringDest)) _fs.default.unlinkSync(stringDest);
-              if (_fs.default.existsSync(ignoredDest)) _fs.default.unlinkSync(ignoredDest);
-              if (_fs.default.existsSync(hashMapDest)) _fs.default.unlinkSync(hashMapDest);
+              deleteDir(cliOptions.outDir);
             }
 
+            (0, _mkdirp.sync)(cliOptions.outDir);
             allstrings = {};
             allhashmap = {};
             allignored = {};
-            _context3.next = 16;
+            _context3.next = 13;
             return Promise.all(filenames.map(function (filename) {
               return handle(filename);
             }));
 
-          case 16:
+          case 13:
+            stringDest = getDest("translations.ftl", cliOptions.outDir);
+            ignoredDest = getDest("ignored.ftl", cliOptions.outDir);
+            hashMapDest = getDest("hashmap.i18n", cliOptions.outDir);
             Object.keys(allstrings).sort(function (a, b) {
               return a.substring(11).localeCompare(b.substring(11));
             }).forEach(function (key) {

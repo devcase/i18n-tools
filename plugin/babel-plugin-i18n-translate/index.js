@@ -23,12 +23,15 @@ var _core = require("@babel/core");
 
 var _default = (0, _helperPluginUtils.declare)(function (api, options) {
   var locale = options.locale || "";
-  var translationsFile = locale.length > 0 ? _path.default.join('i18n', locale, 'translations.ftl') : _path.default.join('i18n', 'translations.ftl');
+
+  var translationsFile = _path.default.join('i18n', 'translations' + (locale ? "." + locale : "") + '.ftl');
 
   var translationFileContents = _fs.default.readFileSync(translationsFile, {
     encoding: "UTF-8"
   });
 
+  console.log(locale);
+  console.log(translationFileContents);
   var bundle = new _fluent.FluentBundle(locale);
   bundle.addMessages((0, _fluent.ftl)([translationFileContents]));
   console.log(bundle.getMessage("h3527609692_ex-nome-sobrenome-nome-setor-nome"));

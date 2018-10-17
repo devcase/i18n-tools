@@ -2,13 +2,24 @@
 
 ## src\babel-plugin-i18n-translate\index.js
 
+h0268372770_ = .
+h2021548501_ = ???
+h1291442299_babel-core = @babel/core
+h1686965612_babel-helper-plugin-utils = @babel/helper-plugin-utils
 h2860765167_classproperties = classProperties
 h2060580535_define-key = ../define-key
 h4101712575_dynamicimport = dynamicImport
 h1043474102_fluent = fluent
+h3123753663_fs = fs
+h3526823472_ftl = .ftl
+h1168254292_h3527609692_ex-nome-sobrenome-nome-setor-nome = h3527609692_ex-nome-sobrenome-nome-setor-nome
+h0926950466_i18n = i18n
 h4203514314_ignore-ast-path = ../ignore-ast-path
 h3605834091_jsx = jsx
 h2910195283_objectrestspread = objectRestSpread
+h3192449942_path = path
+h2378620379_translations = translations
+h1905219180_utf-8 = UTF-8
 
 
 ## src\cli\dir.js
@@ -80,7 +91,3 @@ h1307939351_objectexpression = ObjectExpression
 h3218800665_placeholder = placeholder
 h3520869814_title = title
 h0824320419_value = value
-
-
-## src\index.js
-
