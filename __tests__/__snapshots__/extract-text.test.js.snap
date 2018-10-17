@@ -40,10 +40,10 @@ Object {
   "hashmap": Object {
     "2951570100": "h2951570100_este-texto-precisa-ser-extraido",
   },
-  "ignored": Object {},
-  "strings": Object {
+  "ignored": Object {
     "h2951570100_este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
   },
+  "strings": Object {},
 }
 `;
 

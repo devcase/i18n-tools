@@ -6,7 +6,7 @@ exports[`works 1`] = `
 function Component(props) {
   var url = \\"http://www.ignorar.esta.url.com.br\\";
   var camelCaseString = \\"IgnoreThisWord\\";
-  return <div label=\\"Este \\\\xE9 um label e precisa ser extra\\\\xEDdo\\" className=\\"mb-2 ignorethis\\" max=\\"3\\">\\"This text must be extracted\\"<span>\\"N\\\\xE3o reembols\\\\xE1vel\\"</span>
+  return <div label=\\"Este \\\\xE9 um label e precisa ser extra\\\\xEDdo\\" className=\\"mb-2 ignorethis\\" max=\\"3\\">\\"Este texto precisa ser extra\\\\xEDdo\\"<span>\\"N\\\\xE3o reembols\\\\xE1vel\\"</span>
         </div>;
 }"
 `;
