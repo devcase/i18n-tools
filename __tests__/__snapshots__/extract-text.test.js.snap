@@ -1,13 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`README 1`] = `
+Object {
+  "hashmap": Object {
+    "109488527": "h1105371475_erro-de-entrada",
+    "1326213232": "h1326213232_fulano-da-silva",
+    "2994568279": "h2994568279_nome-do-usuario",
+    "3251541170": "h3251541170_error",
+    "3251814319": "h3251814319_meu-texto-internacionalizavel",
+    "3375576029": "h3375576029_text",
+    "885157645": "h0885157645_react",
+    "922874748": "h0922874748_my-ignored-classname",
+  },
+  "ignored": Object {
+    "h0885157645_react": "react",
+    "h0922874748_my-ignored-classname": "my-ignored-classname",
+    "h1326213232_fulano-da-silva": "Fulano da Silva",
+    "h3251541170_error": "error",
+    "h3375576029_text": "text",
+  },
+  "strings": Object {
+    "h1105371475_erro-de-entrada": "Erro de entrada",
+    "h2994568279_nome-do-usuario": "Nome do usuário",
+    "h3251814319_meu-texto-internacionalizavel": "Meu texto internacionalizável",
+  },
+}
+`;
+
 exports[`test 1 1`] = `
 Object {
   "hashmap": Object {
-    "2951570100": "este-texto-precisa-ser-extraido",
+    "2951570100": "h2951570100_este-texto-precisa-ser-extraido",
   },
   "ignored": Object {},
   "strings": Object {
-    "este-texto-precisa-ser-extraido.2951570100": "Este texto precisa ser extraído",
+    "h2951570100_este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
   },
 }
 `;
@@ -15,26 +42,26 @@ Object {
 exports[`test com jsx 1`] = `
 Object {
   "hashmap": Object {
-    "1090290174": "ignorethisword",
-    "1836160639": "http-www-ignorar-esta-url-com-br",
-    "2639710208": "mb-2-ignorethis",
-    "2951570100": "este-texto-precisa-ser-extraido",
-    "4261676902": "este-e-um-label-e-precisa-ser-extraido",
-    "4261757570": "nao-reembolsavel",
-    "576345883": "3",
-    "885157645": "react",
+    "1090290174": "h1090290174_ignorethisword",
+    "1836160639": "h1836160639_http-www-ignorar-esta-url-com-br",
+    "2639710208": "h2639710208_mb-2-ignorethis",
+    "2951570100": "h2951570100_este-texto-precisa-ser-extraido",
+    "4261676902": "h4261676902_este-e-um-label-e-precisa-ser-extraido",
+    "4261757570": "h4261757570_nao-reembolsavel",
+    "576345883": "h0576345883_3",
+    "885157645": "h0885157645_react",
   },
   "ignored": Object {
-    "3.576345883": "3",
-    "http-www-ignorar-esta-url-com-br.1836160639": "http://www.ignorar.esta.url.com.br",
-    "ignorethisword.1090290174": "IgnoreThisWord",
-    "mb-2-ignorethis.2639710208": "mb-2 ignorethis",
-    "react.885157645": "react",
+    "h0576345883_3": "3",
+    "h0885157645_react": "react",
+    "h1090290174_ignorethisword": "IgnoreThisWord",
+    "h1836160639_http-www-ignorar-esta-url-com-br": "http://www.ignorar.esta.url.com.br",
+    "h2639710208_mb-2-ignorethis": "mb-2 ignorethis",
   },
   "strings": Object {
-    "este-e-um-label-e-precisa-ser-extraido.4261676902": "Este é um label e precisa ser extraído",
-    "este-texto-precisa-ser-extraido.2951570100": "Este texto precisa ser extraído",
-    "nao-reembolsavel.4261757570": "Não reembolsável",
+    "h2951570100_este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
+    "h4261676902_este-e-um-label-e-precisa-ser-extraido": "Este é um label e precisa ser extraído",
+    "h4261757570_nao-reembolsavel": "Não reembolsável",
   },
 }
 `;
@@ -42,14 +69,14 @@ Object {
 exports[`test com jsx 2 1`] = `
 Object {
   "hashmap": Object {
-    "576345883": "3",
-    "74761743": "mb-2-ignorethis-second-time",
-    "885157645": "react",
+    "576345883": "h0576345883_3",
+    "74761743": "h0074761743_mb-2-ignorethis-second-time",
+    "885157645": "h0885157645_react",
   },
   "ignored": Object {
-    "3.576345883": "3",
-    "mb-2-ignorethis-second-time.74761743": "mb-2 ignorethis second-time",
-    "react.885157645": "react",
+    "h0074761743_mb-2-ignorethis-second-time": "mb-2 ignorethis second-time",
+    "h0576345883_3": "3",
+    "h0885157645_react": "react",
   },
   "strings": Object {},
 }
@@ -58,12 +85,12 @@ Object {
 exports[`teste ignorar jquery 1`] = `
 Object {
   "hashmap": Object {
-    "1997815419": "selectorjquery",
-    "2383043738": "jquery",
+    "1997815419": "h1997815419_selectorjquery",
+    "2383043738": "h2383043738_jquery",
   },
   "ignored": Object {
-    "jquery.2383043738": "jquery",
-    "selectorjquery.1997815419": ".selectorjquery",
+    "h1997815419_selectorjquery": ".selectorjquery",
+    "h2383043738_jquery": "jquery",
   },
   "strings": Object {},
 }
@@ -80,10 +107,10 @@ Object {
 exports[`teste template com jsx 1`] = `
 Object {
   "hashmap": Object {
-    "3448505072": "ignorethis",
+    "3448505072": "h3448505072_ignorethis",
   },
   "ignored": Object {
-    "ignorethis.3448505072": "ignorethis",
+    "h3448505072_ignorethis": "ignorethis",
   },
   "strings": Object {},
 }

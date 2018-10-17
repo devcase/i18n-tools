@@ -31,6 +31,11 @@ export default function (path, options) {
 
     let validJsxAttributes = ["label", "value", "aria-label", "title", "placeholder"]
 
+    const value = path.node.value.trim();
+
+    if(path.node.value.match(/^i18n:/)) {
+        return false;
+    }
 
     if(findParentWithType(path, "ImportDeclaration"))
         return true
@@ -41,11 +46,12 @@ export default function (path, options) {
     if(jsxAttributeParentName && !validJsxAttributes.find(t => t === jsxAttributeParentName))
         return true;
 
-    // if(findParentWithType(path, "CallExpression")) {
-    //     return true;
-    // }
-
-    const value = path.node.value.trim();
+    if(findParentWithType(path, "CallExpression")) {
+        return true;
+    }
+    if(findParentWithType(path, "ObjectExpression")) {
+        return true;
+    }
 
     if(requiredRegex.find(regexp => !value.match(regexp))) {
         return true;

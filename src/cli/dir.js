@@ -88,20 +88,23 @@ export default async function (cliOptions) {
         let { strings, hashmap, ignored } = extractText(code, src)
         Object.assign(allstrings, strings)
         Object.assign(allhashmap, hashmap)
-        Object.assign(allignored, ignored)
+        allignored[src] = ignored
     }
 
     await Promise.all(filenames.map(filename => handle(filename)))
 
-    const stringDest = getDest("translations.pt-BR.ftl", cliOptions.outDir)
-    const ignoredDest = getDest("ignored.pt-BR.ftl", cliOptions.outDir)
+    const stringDest = getDest("translations.ftl", cliOptions.outDir)
+    const ignoredDest = getDest("ignored.ftl", cliOptions.outDir)
     const hashMapDest = getDest("hashmap.i18n", cliOptions.outDir)
 
-    Object.keys(allstrings).sort((a,b) => ('' + a).localeCompare(b)).forEach(key => {
-        fs.appendFileSync(stringDest, `${key.substring(0, key.indexOf("."))} = ${allstrings[key]}\n`)
+    Object.keys(allstrings).sort((a,b) => (a.substring(11)).localeCompare(b.substring(11))).forEach(key => {
+        fs.appendFileSync(stringDest, `${key} = ${allstrings[key]}\n`)
     })
-    Object.keys(allignored).sort((a,b) => ('' + a).localeCompare(b)).forEach(key => {
-        fs.appendFileSync(ignoredDest, `${key.substring(0, key.indexOf("."))} = ${allignored[key]}\n`)
+    Object.keys(allignored).forEach(src => {
+        fs.appendFileSync(ignoredDest, `\n\n## ${src}\n\n`)
+        Object.keys(allignored[src]).sort((a,b) => (a.substring(11)).localeCompare(b.substring(11))).forEach(key => {
+            fs.appendFileSync(ignoredDest, `${key} = ${allignored[src][key]}\n`)
+        })
     })
     fs.appendFileSync(hashMapDest, JSON.stringify(allhashmap, null, 2))
 

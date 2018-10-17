@@ -42,12 +42,15 @@ export default function extractText(input, filename, options) {
         if(value === "") return;
 
         let hash = farmhash.hash32(value);
+        
         if(!hashmap[hash]) {
-            hashmap[hash] = defineKey(value);
+            value = value.indexOf("i18n:") === 0 ? value.substring(5): value
+            let key = defineKey(value);
+            hashmap[hash] = key;
             if(ignorePath(path)) {
-                ignored[defineKey(value) + "." + hash] = value;
+                ignored[key] = value;
             } else {
-                strings[defineKey(value) + "." + hash] = value;
+                strings[key] = value;
             }
         }
     }

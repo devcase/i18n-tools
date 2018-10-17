@@ -89,7 +89,7 @@ function _ref() {
                         _extractText = (0, _extractText2.default)(code, src), strings = _extractText.strings, hashmap = _extractText.hashmap, ignored = _extractText.ignored;
                         Object.assign(allstrings, strings);
                         Object.assign(allhashmap, hashmap);
-                        Object.assign(allignored, ignored);
+                        allignored[src] = ignored;
 
                       case 8:
                       case "end":
@@ -180,18 +180,22 @@ function _ref() {
             }));
 
           case 13:
-            stringDest = getDest("translations.pt-BR.ftl", cliOptions.outDir);
-            ignoredDest = getDest("ignored.pt-BR.ftl", cliOptions.outDir);
+            stringDest = getDest("translations.ftl", cliOptions.outDir);
+            ignoredDest = getDest("ignored.ftl", cliOptions.outDir);
             hashMapDest = getDest("hashmap.i18n", cliOptions.outDir);
             Object.keys(allstrings).sort(function (a, b) {
-              return ('' + a).localeCompare(b);
+              return a.substring(11).localeCompare(b.substring(11));
             }).forEach(function (key) {
-              _fs.default.appendFileSync(stringDest, "".concat(key.substring(0, key.indexOf(".")), " = ").concat(allstrings[key], "\n"));
+              _fs.default.appendFileSync(stringDest, "".concat(key, " = ").concat(allstrings[key], "\n"));
             });
-            Object.keys(allignored).sort(function (a, b) {
-              return ('' + a).localeCompare(b);
-            }).forEach(function (key) {
-              _fs.default.appendFileSync(ignoredDest, "".concat(key.substring(0, key.indexOf(".")), " = ").concat(allignored[key], "\n"));
+            Object.keys(allignored).forEach(function (src) {
+              _fs.default.appendFileSync(ignoredDest, "\n\n## ".concat(src, "\n\n"));
+
+              Object.keys(allignored[src]).sort(function (a, b) {
+                return a.substring(11).localeCompare(b.substring(11));
+              }).forEach(function (key) {
+                _fs.default.appendFileSync(ignoredDest, "".concat(key, " = ").concat(allignored[src][key], "\n"));
+              });
             });
 
             _fs.default.appendFileSync(hashMapDest, JSON.stringify(allhashmap, null, 2));

@@ -10,6 +10,7 @@ Necessidade de adicionar suporte a múltiplos idiomas a um software feito em Jav
 - Não aumentar a complexidade para o desenvolvimento de novas funcionalidades
 - Compatibilidade com React
 - Seguir o https://projectfluent.org/
+- Futuro: customização do motor de regras (abaixo)
 
 ## Sobre a solução
 
@@ -19,5 +20,47 @@ A solução é composta por
 - Plugin do [babel](https://babeljs.io) que traduz usando arquivos FTL
 
 O extrator de texto e o plugin seguem algumas regras para identificar quais textos dentro do código Javascript passarão pelo fluxo de tradução automaticamente e quais precisam ser explicitamente identificados pelo desenvolvedor.
+
+## Exemplo
+
+Meu código:
+
+```
+import React from 'react'
+
+export default function (props) {
+    var value = {
+        "text": "Fulano da Silva",
+        "error": "i18n:Erro de entrada"
+    };
+    return <div className="my-ignored-classname">
+        <h1>Meu texto internacionalizável</h1>
+        <input type="text" placeholder="Nome do usuário"/>
+    </div>
+}
+```
+
+Gera o arquivo `i18n/translations.ftl`:
+
+```
+erro-de-entrada.109488527 = Erro de entrada
+meu-texto-internacionalizavel.3251814319 = Meu texto internacionalizável
+nome-do-usuario.2994568279 = Nome do usuário
+```
+
+
+
+## Regras
+
+### Textos traduzidos automaticamente
+
+TODO
+
+### Textos traduzidos por opt-in
+
+TODO
+
+### Textos traduzidos automaticamente
+
 
 

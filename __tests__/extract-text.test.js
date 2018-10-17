@@ -73,3 +73,22 @@ test("teste template 2", () => {
     expect(results).toMatchSnapshot()
 
 })
+
+
+test("README", () => {
+    const code = `import React from 'react'
+
+    export default function (props) {
+        var value = {
+            "text": "Fulano da Silva",
+            "error": "i18n:Erro de entrada"
+        };
+        return <div className="my-ignored-classname">
+            <h1>Meu texto internacionalizável</h1>
+            <input type="text" placeholder="Nome do usuário"/>
+        </div>
+    }
+    `
+    const results = extractText(code, "README.md")
+    expect(results).toMatchSnapshot()
+})
