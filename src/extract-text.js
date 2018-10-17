@@ -5,16 +5,6 @@ import defineKey from "./define-key";
 import farmhash from 'farmhash';
 import ignorePath from './ignore-ast-path';
 
-function findParentWithType(path, type) {
-    if(path.parent && path.parent.type === type) {
-        return path.parent;
-    }
-    if(!path.parentPath) {
-        return null;
-    }
-    return findParentWithType(path.parentPath, type)
-}
-
 export default function extractText(input, filename, options) {
     // let {code} = babel.transform(input, {
     //     presets: [

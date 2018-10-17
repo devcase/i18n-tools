@@ -1,5 +1,15 @@
 
 
+function findParentWithType(path, type) {
+    if(path.parent && path.parent.type === type) {
+        return path.parent;
+    }
+    if(!path.parentPath) {
+        return null;
+    }
+    return findParentWithType(path.parentPath, type)
+}
+
 export default function (path, options) {
 
     let ignoredRegex = [

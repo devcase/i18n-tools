@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works 1`] = `
+"import React from 'react';
+
+function Component(props) {
+  var url = \\"http://www.ignorar.esta.url.com.br\\";
+  var camelCaseString = \\"IgnoreThisWord\\";
+  return <div label=\\"i18n:Este \\\\xE9 um label e precisa ser extra\\\\xEDdo\\" className=\\"mb-2 ignorethis\\" max=\\"3\\">\\"i18n:Este texto precisa ser extra\\\\xEDdo\\"<span>\\"i18n:N\\\\xE3o reembols\\\\xE1vel\\"</span>
+        </div>;
+}"
+`;
