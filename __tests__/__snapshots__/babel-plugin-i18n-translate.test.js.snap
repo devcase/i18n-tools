@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`works 1`] = `
-"import React from 'react';
+"\\"use strict\\";
+
+var _interopRequireDefault = require(\\"@babel/runtime/helpers/interopRequireDefault\\");
+
+var _react = _interopRequireDefault(require(\\"react\\"));
 
 function Component(props) {
   var url = \\"http://www.ignorar.esta.url.com.br\\";
