@@ -2,92 +2,112 @@
 
 ## src\babel-plugin-i18n-translate\index.js
 
-h0268372770_ = .
-h2021548501_ = ???
-h1291442299_babel-core = @babel/core
-h1686965612_babel-helper-plugin-utils = @babel/helper-plugin-utils
-h2860765167_classproperties = classProperties
-h2060580535_define-key = ../define-key
-h4101712575_dynamicimport = dynamicImport
-h1043474102_fluent = fluent
-h3123753663_fs = fs
-h3526823472_ftl = .ftl
-h1168254292_h3527609692_ex-nome-sobrenome-nome-setor-nome = h3527609692_ex-nome-sobrenome-nome-setor-nome
-h0926950466_i18n = i18n
-h4203514314_ignore-ast-path = ../ignore-ast-path
-h3605834091_jsx = jsx
-h2910195283_objectrestspread = objectRestSpread
-h3192449942_path = path
-h2378620379_translations = translations
-h1905219180_utf-8 = UTF-8
+utf-8 = UTF-8
+i18n-lowercase = i18n
+path-lowercase = path
+fs-lowercase = fs
+define-key-lowercase = define-key
+babel-core-lowercase = babel/core
+ignore-ast-path-lowercase = ignore-ast-path
+objectrestspread = objectRestSpread
+babel-helper-plugin-utils-lowercase = babel/helper-plugin-utils
+fluent-lowercase = fluent
+dynamicimport = dynamicImport
+translations-ftl-lowercase = translations.ftl
+jsx-lowercase = jsx
+classproperties = classProperties
 
 
 ## src\cli\dir.js
 
-h0268372770_ = .
-h4073646288_ = /
-h0963654108_extract-text = ../extract-text
-h3123753663_fs = fs
-h2689116509_fs-readdir-recursive = fs-readdir-recursive
-h1115831889_hashmap-i18n = hashmap.i18n
-h2170269944_ignored-ftl = ignored.ftl
-h1207274606_js = .js
-h0740874414_mkdirp = mkdirp
-h2868651347_output-file-sync = output-file-sync
-h3192449942_path = path
-h1259617959_translations-ftl = translations.ftl
-h1905219180_utf-8 = UTF-8
+utf-8 = UTF-8
+ignored-ftl-lowercase = ignored.ftl
+output-file-sync-lowercase = output-file-sync
+path-lowercase = path
+fs-lowercase = fs
+js-lowercase = js
+hashmap-i18n-lowercase = hashmap.i18n
+mkdirp-lowercase = mkdirp
+fs-readdir-recursive-lowercase = fs-readdir-recursive
+translations-ftl-lowercase = translations.ftl
+extract-text-lowercase = extract-text
 
 
 ## src\cli\i18n-extract.js
 
-h1609382108_dir = ./dir
-h0488772278_options = ./options
+options-lowercase = options
+dir-lowercase = dir
 
 
 ## src\cli\options.js
 
-h0357643450_commander = commander
-h3866689102_compile-an-input-directory-of-modules-into-an-output-directory = Compile an input directory of modules into an output directory
-h3024597284_d-out-dir-out = -d, --out-dir [out]
-h3087293446_delete-dir-on-start = --delete-dir-on-start
-h2266516860_delete-the-out-directory-before-compilation = Delete the out directory before compilation
-h4027990914_glob = glob
-h0926950466_i18n = i18n
-h2559130230_lodash-uniq = lodash/uniq
+lodash-uniq-lowercase = lodash/uniq
+glob-lowercase = glob
+i18n-lowercase = i18n
+compile-an-input-directory-of-modules-into-an-output-directory = Compile an input directory of modules into an output directory
+delete-dir-on-start-lowercase = delete-dir-on-start
+delete-the-out-directory-before-compilation = Delete the out directory before compilation
+commander-lowercase = commander
+d-out-dir-out-lowercase = d, --out-dir [out
 
 
 ## src\define-key.js
 
-h1945142695_ = -
-h3536038491__ = _
-h1038667741_0 = 0
-h2564726868_farmhash = farmhash
-h0131489226_nfd = NFD
+0-lowercase = 0
+nfd = NFD
+lowercase-lowercase = lowercase
+farmhash-lowercase = farmhash
 
 
 ## src\extract-text.js
 
-h1291442299_babel-core = @babel/core
-h0013222155_babel-parser = @babel/parser
-h0592823741_babel-traverse = @babel/traverse
-h2860765167_classproperties = classProperties
-h3007612748_define-key = ./define-key
-h4101712575_dynamicimport = dynamicImport
-h2564726868_farmhash = farmhash
-h1565700119_ignore-ast-path = ./ignore-ast-path
-h3605834091_jsx = jsx
-h3734818674_module = module
-h2910195283_objectrestspread = objectRestSpread
+babel-core-lowercase = babel/core
+define-key-lowercase = define-key
+ignore-ast-path-lowercase = ignore-ast-path
+objectrestspread = objectRestSpread
+babel-parser-lowercase = babel/parser
+module-lowercase = module
+babel-traverse-lowercase = babel/traverse
+dynamicimport = dynamicImport
+jsx-lowercase = jsx
+classproperties = classProperties
+erro-no-arquivo = Erro no arquivo
+farmhash-lowercase = farmhash
+
+
+## src\i18n-loadBundle.js
+
+head-lowercase = head
+utf-8-lowercase = utf-8
+query-string-lowercase = query-string
+fluent-langneg-lowercase = fluent-langneg
+bundle-js-lowercase = bundle.js
+script-lowercase = script
+
+
+## src\i18n-selectLocale.js
+
+query-string-lowercase = query-string
 
 
 ## src\ignore-ast-path.js
 
-h2181203839_callexpression = CallExpression
-h0589402992_importdeclaration = ImportDeclaration
-h2687957079_jsxattribute = JSXAttribute
-h2161373089_label = label
-h1307939351_objectexpression = ObjectExpression
-h3218800665_placeholder = placeholder
-h3520869814_title = title
-h0824320419_value = value
+jsxtext = JSXText
+labelplural = labelPlural
+placeholder-lowercase = placeholder
+hint-lowercase = hint
+text-lowercase = text
+title-lowercase = title
+label-lowercase = label
+jsxattribute = JSXAttribute
+message-lowercase = message
+callexpression = CallExpression
+aria-label-lowercase = aria-label
+importdeclaration = ImportDeclaration
+objectproperty = ObjectProperty
+
+
+## src\index.js
+
+i18n-selectlocale = i18n-selectLocale
+i18n-loadbundle = i18n-loadBundle

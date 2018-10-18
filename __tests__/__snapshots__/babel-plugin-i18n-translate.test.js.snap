@@ -5,12 +5,23 @@ exports[`works 1`] = `
 
 var _interopRequireDefault = require(\\"@babel/runtime/helpers/interopRequireDefault\\");
 
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+exports.default = _default;
+
 var _react = _interopRequireDefault(require(\\"react\\"));
 
-function Component(props) {
-  var url = \\"http://www.ignorar.esta.url.com.br\\";
-  var camelCaseString = \\"IgnoreThisWord\\";
-  return <div label=\\"Este \\\\xE9 um label e precisa ser extra\\\\xEDdo\\" className=\\"mb-2 ignorethis\\" max=\\"3\\">\\"Este texto precisa ser extra\\\\xEDdo\\"<span>\\"N\\\\xE3o reembols\\\\xE1vel\\"</span>
+function _default(props) {
+  var value = {
+    \\"label\\": \\"Include this text\\",
+    text: \\"This text also, but without exclamation points!!!!\\",
+    \\"constantName\\": \\"Ignore this text\\",
+    \\"error\\": \\"Input error\\"
+  };
+  return <div className=\\"my-ignored-classname\\">
+            <h1>\\"     My i18n text!!!!\\"</h1>
+            <input type=\\"text\\" placeholder=\\"Username\\" />
         </div>;
 }"
 `;

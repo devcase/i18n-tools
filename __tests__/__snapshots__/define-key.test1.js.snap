@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(total com impostos e taxas) 1`] = `"total-com-impostos-e-taxas-lowercase"`;
+
+exports[`Abraço 1`] = `"abraco"`;
+
+exports[`Formato: +{código país}{código estado}{telefone} 1`] = `"formato-codigo-pais-codigo-estado-telefone"`;
+
+exports[`Marcadores 1`] = `"marcadores"`;
+
+exports[`Reserva de Hotéis 1`] = `"reserva-de-hoteis"`;

@@ -42,17 +42,13 @@ function extractText(input, filename, options) {
   var strings = {};
   var hashmap = {};
   var ignored = {};
+  var wordregex = /\w/;
 
   function processStringPath(path) {
     var value = path.node.value;
-    if (!value || value.trim() === "") return;
-    value = value.trim();
-
-    while (value[value.length - 1] === ":") {
-      value = value.substring(0, value.length - 1);
-      value = value.trim();
-    }
-
+    if (!value || value.trim() === "" || !value.match(wordregex)) return;
+    var limits = [value.match(wordregex).index, value.length - value.split("").reverse().join("").match(wordregex).index];
+    value = value.substring(limits[0], limits[1]);
     if (value === "") return;
     value = value.indexOf("i18n:") === 0 ? value.substring(5) : value;
 

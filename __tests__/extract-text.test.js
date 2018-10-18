@@ -81,12 +81,12 @@ test("README", () => {
     export default function (props) {
         var value = {
             "label": "Incluir este texto",
-            text: "Este texto também",
+            text: "Este texto também, mas sem as exclamações!!!!",
             "constantName": "Ignore this text",
             "error": "i18n:Erro de entrada"
         };
         return <div className="my-ignored-classname">
-            <h1>Meu texto internacionalizável</h1>
+            <h1>     Meu texto internacionalizável!!!!</h1>
             <input type="text" placeholder="Nome do usuário"/>
         </div>
     }

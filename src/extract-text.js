@@ -26,19 +26,20 @@ export default function extractText(input, filename, options) {
     const strings = {}
     const hashmap = {}
     const ignored = {}
-    
+    const wordregex = /\w/
 
     function processStringPath(path) {
 
         let value = path.node.value;
-        if(!value || value.trim() === "") return;
+        if(!value || value.trim() === "" || !value.match(wordregex)) return;
 
+        
+        var limits = [
+            value.match(wordregex).index,
+            value.length - value.split("").reverse().join("").match(wordregex).index
+        ]
+        value = value.substring(limits[0], limits[1]);
 
-        value = value.trim();
-        while(value[value.length - 1] === ":") {
-            value = value.substring(0, value.length - 1);
-            value = value.trim();
-        }
         if(value === "") return;
 
         value = value.indexOf("i18n:") === 0 ? value.substring(5): value

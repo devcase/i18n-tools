@@ -3,34 +3,34 @@
 exports[`README 1`] = `
 Object {
   "hashmap": Object {
-    "1105371475": "h1105371475_erro-de-entrada",
-    "1350806831": "h1350806831_incluir-este-texto",
-    "2161373089": "h2161373089_label",
-    "2994568279": "h2994568279_nome-do-usuario",
-    "3102868937": "h3102868937_constantname",
-    "3122683021": "h3122683021_este-texto-tambem",
-    "3251541170": "h3251541170_error",
-    "3251814319": "h3251814319_meu-texto-internacionalizavel",
-    "3375576029": "h3375576029_text",
-    "3796890060": "h3796890060_ignore-this-text",
-    "885157645": "h0885157645_react",
-    "922874748": "h0922874748_my-ignored-classname",
+    "1054487305": "este-texto-tambem-mas-sem-as-exclamacoes",
+    "1105371475": "erro-de-entrada",
+    "1350806831": "incluir-este-texto",
+    "2161373089": "label-lowercase",
+    "2994568279": "nome-do-usuario",
+    "3102868937": "constantname",
+    "3251541170": "error-lowercase",
+    "3251814319": "meu-texto-internacionalizavel",
+    "3375576029": "text-lowercase",
+    "3796890060": "ignore-this-text",
+    "885157645": "react-lowercase",
+    "922874748": "my-ignored-classname-lowercase",
   },
   "ignored": Object {
-    "h0885157645_react": "react",
-    "h0922874748_my-ignored-classname": "my-ignored-classname",
-    "h2161373089_label": "label",
-    "h3102868937_constantname": "constantName",
-    "h3251541170_error": "error",
-    "h3375576029_text": "text",
-    "h3796890060_ignore-this-text": "Ignore this text",
+    "constantname": "constantName",
+    "error-lowercase": "error",
+    "ignore-this-text": "Ignore this text",
+    "label-lowercase": "label",
+    "my-ignored-classname-lowercase": "my-ignored-classname",
+    "react-lowercase": "react",
+    "text-lowercase": "text",
   },
   "strings": Object {
-    "h1105371475_erro-de-entrada": "Erro de entrada",
-    "h1350806831_incluir-este-texto": "Incluir este texto",
-    "h2994568279_nome-do-usuario": "Nome do usuário",
-    "h3122683021_este-texto-tambem": "Este texto também",
-    "h3251814319_meu-texto-internacionalizavel": "Meu texto internacionalizável",
+    "erro-de-entrada": "Erro de entrada",
+    "este-texto-tambem-mas-sem-as-exclamacoes": "Este texto também, mas sem as exclamações",
+    "incluir-este-texto": "Incluir este texto",
+    "meu-texto-internacionalizavel": "Meu texto internacionalizável",
+    "nome-do-usuario": "Nome do usuário",
   },
 }
 `;
@@ -38,10 +38,10 @@ Object {
 exports[`test 1 1`] = `
 Object {
   "hashmap": Object {
-    "2951570100": "h2951570100_este-texto-precisa-ser-extraido",
+    "2951570100": "este-texto-precisa-ser-extraido",
   },
   "ignored": Object {
-    "h2951570100_este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
+    "este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
   },
   "strings": Object {},
 }
@@ -50,26 +50,26 @@ Object {
 exports[`test com jsx 1`] = `
 Object {
   "hashmap": Object {
-    "1090290174": "h1090290174_ignorethisword",
-    "1836160639": "h1836160639_http-www-ignorar-esta-url-com-br",
-    "2639710208": "h2639710208_mb-2-ignorethis",
-    "2951570100": "h2951570100_este-texto-precisa-ser-extraido",
-    "4261676902": "h4261676902_este-e-um-label-e-precisa-ser-extraido",
-    "4261757570": "h4261757570_nao-reembolsavel",
-    "576345883": "h0576345883_3",
-    "885157645": "h0885157645_react",
+    "1090290174": "ignorethisword",
+    "1836160639": "http-www-ignorar-esta-url-com-br-lowercase",
+    "2639710208": "mb-2-ignorethis-lowercase",
+    "2951570100": "este-texto-precisa-ser-extraido",
+    "4261676902": "este-e-um-label-e-precisa-ser-extraido",
+    "4261757570": "nao-reembolsavel",
+    "576345883": "3-lowercase",
+    "885157645": "react-lowercase",
   },
   "ignored": Object {
-    "h0576345883_3": "3",
-    "h0885157645_react": "react",
-    "h1090290174_ignorethisword": "IgnoreThisWord",
-    "h1836160639_http-www-ignorar-esta-url-com-br": "http://www.ignorar.esta.url.com.br",
-    "h2639710208_mb-2-ignorethis": "mb-2 ignorethis",
+    "3-lowercase": "3",
+    "http-www-ignorar-esta-url-com-br-lowercase": "http://www.ignorar.esta.url.com.br",
+    "ignorethisword": "IgnoreThisWord",
+    "mb-2-ignorethis-lowercase": "mb-2 ignorethis",
+    "react-lowercase": "react",
   },
   "strings": Object {
-    "h2951570100_este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
-    "h4261676902_este-e-um-label-e-precisa-ser-extraido": "Este é um label e precisa ser extraído",
-    "h4261757570_nao-reembolsavel": "Não reembolsável",
+    "este-e-um-label-e-precisa-ser-extraido": "Este é um label e precisa ser extraído",
+    "este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
+    "nao-reembolsavel": "Não reembolsável",
   },
 }
 `;
@@ -77,14 +77,14 @@ Object {
 exports[`test com jsx 2 1`] = `
 Object {
   "hashmap": Object {
-    "576345883": "h0576345883_3",
-    "74761743": "h0074761743_mb-2-ignorethis-second-time",
-    "885157645": "h0885157645_react",
+    "576345883": "3-lowercase",
+    "74761743": "mb-2-ignorethis-second-time-lowercase",
+    "885157645": "react-lowercase",
   },
   "ignored": Object {
-    "h0074761743_mb-2-ignorethis-second-time": "mb-2 ignorethis second-time",
-    "h0576345883_3": "3",
-    "h0885157645_react": "react",
+    "3-lowercase": "3",
+    "mb-2-ignorethis-second-time-lowercase": "mb-2 ignorethis second-time",
+    "react-lowercase": "react",
   },
   "strings": Object {},
 }
@@ -93,12 +93,12 @@ Object {
 exports[`teste ignorar jquery 1`] = `
 Object {
   "hashmap": Object {
-    "1997815419": "h1997815419_selectorjquery",
-    "2383043738": "h2383043738_jquery",
+    "1313446134": "selectorjquery-lowercase",
+    "2383043738": "jquery-lowercase",
   },
   "ignored": Object {
-    "h1997815419_selectorjquery": ".selectorjquery",
-    "h2383043738_jquery": "jquery",
+    "jquery-lowercase": "jquery",
+    "selectorjquery-lowercase": "selectorjquery",
   },
   "strings": Object {},
 }
@@ -115,10 +115,10 @@ Object {
 exports[`teste template com jsx 1`] = `
 Object {
   "hashmap": Object {
-    "3448505072": "h3448505072_ignorethis",
+    "3448505072": "ignorethis-lowercase",
   },
   "ignored": Object {
-    "h3448505072_ignorethis": "ignorethis",
+    "ignorethis-lowercase": "ignorethis",
   },
   "strings": Object {},
 }
