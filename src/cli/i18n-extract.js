@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import dir from './dir'
 
 import parseArgv from "./options";
