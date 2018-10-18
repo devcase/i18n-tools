@@ -40,6 +40,14 @@ export default function (path, options) {
         return false;
     }
 
+    if(requiredRegex.find(regexp => !value.match(regexp))) {
+        return true;
+    }
+
+    if(ignoredRegex.find(regexp => value.match(regexp))) {
+        return true;
+    }
+
     if(findParentWithType(path, "ImportDeclaration"))
         return true;
 
@@ -80,14 +88,6 @@ export default function (path, options) {
         } else {
             _return = true;
         }
-    }
-
-    if(requiredRegex.find(regexp => !value.match(regexp))) {
-        return true;
-    }
-
-    if(ignoredRegex.find(regexp => value.match(regexp))) {
-        return true;
     }
 
     if(path.node.type === "JSXText") {
