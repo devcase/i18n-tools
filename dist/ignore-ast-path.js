@@ -30,6 +30,18 @@ function _default(path, options) {
     return false;
   }
 
+  if (requiredRegex.find(function (regexp) {
+    return !value.match(regexp);
+  })) {
+    return true;
+  }
+
+  if (ignoredRegex.find(function (regexp) {
+    return value.match(regexp);
+  })) {
+    return true;
+  }
+
   if (findParentWithType(path, "ImportDeclaration")) return true;
   var jsxAttributeParent = findParentWithType(path, "JSXAttribute");
   var jsxAttributeParentName = jsxAttributeParent && jsxAttributeParent.name.name;
@@ -73,18 +85,6 @@ function _default(path, options) {
     } else {
       _return = true;
     }
-  }
-
-  if (requiredRegex.find(function (regexp) {
-    return !value.match(regexp);
-  })) {
-    return true;
-  }
-
-  if (ignoredRegex.find(function (regexp) {
-    return value.match(regexp);
-  })) {
-    return true;
   }
 
   if (path.node.type === "JSXText") {
