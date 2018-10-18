@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(total com impostos e taxas) 1`] = `"total-com-impostos-e-taxas-lowercase"`;
+exports[`(total com impostos e taxas) 1`] = `"total-com-impostos-e-taxas_lowercase"`;
 
 exports[`Abraço 1`] = `"abraco"`;
 

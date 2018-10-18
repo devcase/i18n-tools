@@ -1,1 +1,1 @@
-i18n-lowercase = i18n
+i18n_lowercase = i18n

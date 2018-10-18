@@ -21,5 +21,5 @@ function _default(text) {
   if (r[0] === "-") r = r.substring(1);
   if (r[r.length - 1] === "-") r = r.substring(0, r.length - 1); // return "h" + pad(farmhash.hash32(text), 10) + "_" + r
 
-  return r + (allLower ? "-lowercase" : "");
+  return r + (allLower ? "_lowercase" : "");
 }

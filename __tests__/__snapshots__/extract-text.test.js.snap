@@ -6,24 +6,24 @@ Object {
     "1054487305": "este-texto-tambem-mas-sem-as-exclamacoes",
     "1105371475": "erro-de-entrada",
     "1350806831": "incluir-este-texto",
-    "2161373089": "label-lowercase",
+    "2161373089": "label_lowercase",
     "2994568279": "nome-do-usuario",
     "3102868937": "constantname",
-    "3251541170": "error-lowercase",
+    "3251541170": "error_lowercase",
     "3251814319": "meu-texto-internacionalizavel",
-    "3375576029": "text-lowercase",
+    "3375576029": "text_lowercase",
     "3796890060": "ignore-this-text",
-    "885157645": "react-lowercase",
-    "922874748": "my-ignored-classname-lowercase",
+    "885157645": "react_lowercase",
+    "922874748": "my-ignored-classname_lowercase",
   },
   "ignored": Object {
     "constantname": "constantName",
-    "error-lowercase": "error",
+    "error_lowercase": "error",
     "ignore-this-text": "Ignore this text",
-    "label-lowercase": "label",
-    "my-ignored-classname-lowercase": "my-ignored-classname",
-    "react-lowercase": "react",
-    "text-lowercase": "text",
+    "label_lowercase": "label",
+    "my-ignored-classname_lowercase": "my-ignored-classname",
+    "react_lowercase": "react",
+    "text_lowercase": "text",
   },
   "strings": Object {
     "erro-de-entrada": "Erro de entrada",
@@ -51,20 +51,20 @@ exports[`test com jsx 1`] = `
 Object {
   "hashmap": Object {
     "1090290174": "ignorethisword",
-    "1836160639": "http-www-ignorar-esta-url-com-br-lowercase",
-    "2639710208": "mb-2-ignorethis-lowercase",
+    "1836160639": "http-www-ignorar-esta-url-com-br_lowercase",
+    "2639710208": "mb-2-ignorethis_lowercase",
     "2951570100": "este-texto-precisa-ser-extraido",
     "4261676902": "este-e-um-label-e-precisa-ser-extraido",
     "4261757570": "nao-reembolsavel",
-    "576345883": "3-lowercase",
-    "885157645": "react-lowercase",
+    "576345883": "3_lowercase",
+    "885157645": "react_lowercase",
   },
   "ignored": Object {
-    "3-lowercase": "3",
-    "http-www-ignorar-esta-url-com-br-lowercase": "http://www.ignorar.esta.url.com.br",
+    "3_lowercase": "3",
+    "http-www-ignorar-esta-url-com-br_lowercase": "http://www.ignorar.esta.url.com.br",
     "ignorethisword": "IgnoreThisWord",
-    "mb-2-ignorethis-lowercase": "mb-2 ignorethis",
-    "react-lowercase": "react",
+    "mb-2-ignorethis_lowercase": "mb-2 ignorethis",
+    "react_lowercase": "react",
   },
   "strings": Object {
     "este-e-um-label-e-precisa-ser-extraido": "Este é um label e precisa ser extraído",
@@ -77,14 +77,14 @@ Object {
 exports[`test com jsx 2 1`] = `
 Object {
   "hashmap": Object {
-    "576345883": "3-lowercase",
-    "74761743": "mb-2-ignorethis-second-time-lowercase",
-    "885157645": "react-lowercase",
+    "576345883": "3_lowercase",
+    "74761743": "mb-2-ignorethis-second-time_lowercase",
+    "885157645": "react_lowercase",
   },
   "ignored": Object {
-    "3-lowercase": "3",
-    "mb-2-ignorethis-second-time-lowercase": "mb-2 ignorethis second-time",
-    "react-lowercase": "react",
+    "3_lowercase": "3",
+    "mb-2-ignorethis-second-time_lowercase": "mb-2 ignorethis second-time",
+    "react_lowercase": "react",
   },
   "strings": Object {},
 }
@@ -93,12 +93,12 @@ Object {
 exports[`teste ignorar jquery 1`] = `
 Object {
   "hashmap": Object {
-    "1313446134": "selectorjquery-lowercase",
-    "2383043738": "jquery-lowercase",
+    "1313446134": "selectorjquery_lowercase",
+    "2383043738": "jquery_lowercase",
   },
   "ignored": Object {
-    "jquery-lowercase": "jquery",
-    "selectorjquery-lowercase": "selectorjquery",
+    "jquery_lowercase": "jquery",
+    "selectorjquery_lowercase": "selectorjquery",
   },
   "strings": Object {},
 }
@@ -115,10 +115,10 @@ Object {
 exports[`teste template com jsx 1`] = `
 Object {
   "hashmap": Object {
-    "3448505072": "ignorethis-lowercase",
+    "3448505072": "ignorethis_lowercase",
   },
   "ignored": Object {
-    "ignorethis-lowercase": "ignorethis",
+    "ignorethis_lowercase": "ignorethis",
   },
   "strings": Object {},
 }
