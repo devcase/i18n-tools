@@ -25,6 +25,6 @@ function _default(availableLocales) {
   var script = document.createElement('script');
   script.charset = 'utf-8';
   script.timeout = 120;
-  script.src = locale + "/" + locale + ".bundle.js";
+  script.src = "/static/js/" + locale + "/bundle.js";
   head.appendChild(script);
 }
