@@ -7,9 +7,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _ignoreAstPath = _interopRequireDefault(require("../ignore-ast-path"));
+var _ignoreAstPath = _interopRequireDefault(require("./ignore-ast-path"));
 
-var _defineKey = _interopRequireDefault(require("../define-key"));
+var _defineKey = _interopRequireDefault(require("./define-key"));
 
 var _fluent = require("fluent");
 
@@ -24,15 +24,29 @@ var _core = require("@babel/core");
 var wordregex = /\w/;
 
 var _default = (0, _helperPluginUtils.declare)(function (api, options) {
-  var locale = options.locale || "";
-  var translationsFile = locale.length > 0 ? _path.default.join('i18n', locale, 'translations.ftl') : _path.default.join('i18n', 'translations.ftl');
+  var locale = options.locale;
+  var getText;
 
-  var translationFileContents = _fs.default.readFileSync(translationsFile, {
-    encoding: "UTF-8"
-  });
+  if (locale) {
+    //loads translation file from `i18n/<locale>/translations.ftl`
+    var translationsFile = locale.length > 0 ? _path.default.join('i18n', locale, 'translations.ftl') : _path.default.join('i18n', 'translations.ftl');
 
-  var bundle = new _fluent.FluentBundle(locale);
-  bundle.addMessages((0, _fluent.ftl)([translationFileContents]));
+    var translationFileContents = _fs.default.readFileSync(translationsFile, {
+      encoding: "UTF-8"
+    });
+
+    var bundle = new _fluent.FluentBundle(locale);
+    bundle.addMessages((0, _fluent.ftl)([translationFileContents]));
+
+    getText = function getText(key, text) {
+      return bundle.getMessage(key) || text;
+    };
+  } else {
+    getText = function getText(key, text) {
+      return "i18n:" + text;
+    };
+  }
+
   var manipulator = {
     exit: function exit(path) {
       if (!(0, _ignoreAstPath.default)(path)) {
@@ -44,7 +58,7 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
         value = value.substring(limits[0], limits[1]);
         if (value.indexOf("i18n:") === 0) value = value.substring("i18n:".length);
         var key = (0, _defineKey.default)(value);
-        var i18nvalue = bundle.getMessage(key);
+        var i18nvalue = getText(key, value);
 
         if (i18nvalue) {
           path.replaceWith(_core.types.stringLiteral(before + i18nvalue + after));

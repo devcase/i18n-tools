@@ -36,7 +36,7 @@ export default function (path, options) {
 
     const value = path.node.value.trim();
 
-    if(path.node.value.match(/^i18n:/)) {
+    if(value.indexOf("i18n:") === 0) {
         return false;
     }
 

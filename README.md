@@ -43,11 +43,11 @@ export default function (props) {
 
 Gera o arquivo `i18n/translations.ftl`:
 ```
-h1105371475_erro-de-entrada = Erro de entrada
-h1350806831_incluir-este-texto = Incluir este texto
-h2994568279_nome-do-usuario = Nome do usuário
-h3122683021_este-texto-tambem = Este texto também
-h3251814319_meu-texto-internacionalizavel = Meu texto internacionalizável
+erro-de-entrada = Erro de entrada
+incluir-este-texto = Incluir este texto
+nome-do-usuario = Nome do usuário
+este-texto-tambem = Este texto também
+meu-texto-internacionalizavel = Meu texto internacionalizável
 ```
 
 ## Regras
