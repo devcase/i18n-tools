@@ -10,6 +10,7 @@ var babelPluginTranslate = require('./babel-plugin-i18n-translate');
 
 module.exports = function (content, map, meta) {
   var options = loaderUtils.getOptions(this);
+  if (this.resourcePath.match(/node_modules/)) return content;
   var callback = this.async();
   var loaderQuery = path.resolve(__filename) + "?" + JSON.stringify(options) + "!";
   /**
