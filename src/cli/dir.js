@@ -1,8 +1,7 @@
-import outputFileSync from "output-file-sync";
 import path from "path";
 import fs from "fs";
 import readdirRecursive from "fs-readdir-recursive";
-import extractText from '../extract-text';
+import extractText from '../commons/extract-text';
 import { sync as mkdirpSync } from "mkdirp";
 
 function readdir(

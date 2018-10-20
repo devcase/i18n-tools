@@ -6,7 +6,7 @@ var babel = require('@babel/core');
 
 var loaderUtils = require('loader-utils');
 
-var babelPluginTranslate = require('./babel-plugin-i18n-translate');
+var babelPluginTranslate = require('../babel-plugin-i18n-translate');
 
 module.exports = function (content, map, meta) {
   var options = loaderUtils.getOptions(this);

@@ -1,7 +1,7 @@
 const path = require('path')
 const babel = require('@babel/core')
 const loaderUtils = require('loader-utils')
-const babelPluginTranslate = require('./babel-plugin-i18n-translate')
+const babelPluginTranslate = require('../babel-plugin-i18n-translate')
 
 module.exports = function (content, map, meta) {
     const options = loaderUtils.getOptions(this);

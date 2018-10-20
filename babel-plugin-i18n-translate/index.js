@@ -7,9 +7,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _ignoreAstPath = _interopRequireDefault(require("./ignore-ast-path"));
+var _ignoreAstPath = _interopRequireDefault(require("../commons/ignore-ast-path"));
 
-var _defineKey = _interopRequireDefault(require("./define-key"));
+var _defineKey = _interopRequireDefault(require("../commons/define-key"));
 
 var _fluent = require("fluent");
 

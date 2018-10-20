@@ -1,4 +1,4 @@
-import defineKey from '../src/define-key'
+import defineKey from '../src/commons/define-key'
 
 test("Abraço", () => {
     expect(defineKey("Abraço")).toMatchSnapshot()

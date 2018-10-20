@@ -11,15 +11,13 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _outputFileSync = _interopRequireDefault(require("output-file-sync"));
-
 var _path = _interopRequireDefault(require("path"));
 
 var _fs = _interopRequireDefault(require("fs"));
 
 var _fsReaddirRecursive = _interopRequireDefault(require("fs-readdir-recursive"));
 
-var _extractText2 = _interopRequireDefault(require("../extract-text"));
+var _extractText2 = _interopRequireDefault(require("../commons/extract-text"));
 
 var _mkdirp = require("mkdirp");
 
@@ -186,7 +184,7 @@ function _ref() {
 
           case 16:
             Object.keys(allstrings).sort(function (a, b) {
-              return a.substring(0).localeCompare(b.substring(0));
+              return a.substring(11).localeCompare(b.substring(11));
             }).forEach(function (key) {
               _fs.default.appendFileSync(stringDest, "".concat(key, " = ").concat(allstrings[key], "\n"));
             });
@@ -194,7 +192,7 @@ function _ref() {
               _fs.default.appendFileSync(ignoredDest, "\n\n## ".concat(src, "\n\n"));
 
               Object.keys(allignored[src]).sort(function (a, b) {
-                return a.substring(0).localeCompare(b.substring(0));
+                return a.substring(11).localeCompare(b.substring(11));
               }).forEach(function (key) {
                 _fs.default.appendFileSync(ignoredDest, "".concat(key, " = ").concat(allignored[src][key], "\n"));
               });

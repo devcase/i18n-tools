@@ -1,5 +1,5 @@
-import ignorePath from './ignore-ast-path'
-import defineKey from './define-key'
+import ignorePath from '../commons/ignore-ast-path'
+import defineKey from '../commons/define-key'
 import { FluentBundle, ftl } from 'fluent';
 import fs from 'fs'
 import path from 'path'

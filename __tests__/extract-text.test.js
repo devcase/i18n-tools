@@ -1,4 +1,4 @@
-import extractText from '../src/extract-text'
+import extractText from '../src/commons/extract-text'
 
 test("test 1", () => {
     const code = `
