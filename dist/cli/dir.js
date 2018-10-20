@@ -186,7 +186,7 @@ function _ref() {
 
           case 16:
             Object.keys(allstrings).sort(function (a, b) {
-              return a.substring(11).localeCompare(b.substring(11));
+              return a.substring(0).localeCompare(b.substring(0));
             }).forEach(function (key) {
               _fs.default.appendFileSync(stringDest, "".concat(key, " = ").concat(allstrings[key], "\n"));
             });
@@ -194,7 +194,7 @@ function _ref() {
               _fs.default.appendFileSync(ignoredDest, "\n\n## ".concat(src, "\n\n"));
 
               Object.keys(allignored[src]).sort(function (a, b) {
-                return a.substring(11).localeCompare(b.substring(11));
+                return a.substring(0).localeCompare(b.substring(0));
               }).forEach(function (key) {
                 _fs.default.appendFileSync(ignoredDest, "".concat(key, " = ").concat(allignored[src][key], "\n"));
               });
