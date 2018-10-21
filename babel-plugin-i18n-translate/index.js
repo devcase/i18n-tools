@@ -61,7 +61,7 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
         var i18nvalue = getText(key, value);
 
         if (i18nvalue) {
-          path.replaceWith(_core.types.stringLiteral(before + i18nvalue + after));
+          path.node.value = before + i18nvalue + after;
         }
 
         path.skip();

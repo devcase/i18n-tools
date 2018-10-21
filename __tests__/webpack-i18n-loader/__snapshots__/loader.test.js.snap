@@ -8,18 +8,33 @@ console.log(Level1)"
 `;
 
 exports[`Test webpack-i18n 2`] = `
-"import Level2 from \\"./level2?locale=en-US\\";
+"//precisa ser atualizado para ./level2?locale=en-US
+import sublevel from \\"./level2?locale=en-US\\"; //Traduzido para inglês
+
 var text = \\"My i18n text\\";
-export default Level2;"
+export default sublevel;"
 `;
 
 exports[`Test webpack-i18n 3`] = `
-"import(\\"./level3?locale=en-US\\").then(t => console.log(t.default));
+"//precisa ser atualizado para ./level3?locale=en-US
+import(\\"./level3?locale=en-US\\").then(t => console.log(t.default)); //Não pode mexer em ./level4 (excluído nas regras do webpack)
+
+import sublevel from './level4'; //Traduzido para inglês
+
+var text = \\"My i18n text\\";
+export default sublevel;"
+`;
+
+exports[`Test webpack-i18n 4`] = `
+"//Traduzido para inglês
 var text = \\"My i18n text\\";
 export default text;"
 `;
 
-exports[`Test webpack-i18n 4`] = `
-"var text = \\"My i18n text\\";
-export default \\"This text also, but without exclamation points\\";"
+exports[`Test webpack-i18n 5`] = `
+"//Não modificado
+var text = \\"i18n:Meu texto internacionalizável\\"
+
+export default text
+"
 `;

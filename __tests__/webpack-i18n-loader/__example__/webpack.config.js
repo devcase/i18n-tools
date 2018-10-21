@@ -16,7 +16,8 @@ module.exports = {
                     loader: path.resolve(__dirname, '../../../src/webpack-i18n-loader/index.js'),
                     options: {
                         conditions: {
-                            include: [path.resolve(__dirname, 'src')]
+                            include: [path.resolve(__dirname, 'src')],
+                            exclude: /level4/
                         },
                         locale: "en-US"
                     }

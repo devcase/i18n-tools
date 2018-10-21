@@ -47,7 +47,7 @@ export default declare((api, options) => {
                 let i18nvalue = getText(key, value);
 
                 if(i18nvalue) {
-                    path.replaceWith(t.stringLiteral(before + i18nvalue + after));
+                    path.node.value = before + i18nvalue + after;
                 }
                 path.skip();
             }
