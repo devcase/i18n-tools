@@ -20,7 +20,7 @@ function _default(props) {
     \\"error\\": \\"Input error\\"
   };
   return <div className=\\"my-ignored-classname\\">
-            <h1>\\"     My i18n text!!!!\\"</h1>
+            <h1>     My i18n text!!!!</h1>
             <input type=\\"text\\" placeholder=\\"Username\\" />
         </div>;
 }"
