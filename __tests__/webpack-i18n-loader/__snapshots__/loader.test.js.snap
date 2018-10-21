@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test webpack-i18n 1`] = `
+"import Level1 from './level1?locale=en-US'
+
+var text = \\"i18n:Meu texto internacionalizável\\"
+console.log(Level1)"
+`;
+
+exports[`Test webpack-i18n 2`] = `
+"import Level2 from \\"./level2?locale=en-US\\";
+var text = \\"My i18n text\\";
+export default Level2;"
+`;
+
+exports[`Test webpack-i18n 3`] = `
+"import(\\"./level3?locale=en-US\\").then(t => console.log(t.default));
+var text = \\"My i18n text\\";
+export default text;"
+`;
+
+exports[`Test webpack-i18n 4`] = `
+"var text = \\"My i18n text\\";
+export default \\"This text also, but without exclamation points\\";"
+`;
