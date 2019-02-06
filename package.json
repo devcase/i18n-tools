@@ -42,7 +42,6 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.1.2",
     "commander": "^2.19.0",
-    "deasync": "^0.1.13",
     "farmhash": "^2.1.0",
     "fluent": "^0.8.1",
     "fs-readdir-recursive": "^1.1.0",
