@@ -114,7 +114,7 @@ const asyncFunction = async function(content) {
   const resources = {}
   const parserOpts = {
     sourceMaps: this.sourceMap,
-    plugins: ["jsx", "dynamicImport", "objectRestSpread"],
+    plugins: ["jsx", "dynamicImport", "objectRestSpread", "classProperties"],
     sourceType: "module",
     sourceFilename: this.resource
   }

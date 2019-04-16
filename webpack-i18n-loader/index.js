@@ -160,7 +160,7 @@ function () {
             resources = {};
             parserOpts = {
               sourceMaps: this.sourceMap,
-              plugins: ["jsx", "dynamicImport", "objectRestSpread"],
+              plugins: ["jsx", "dynamicImport", "objectRestSpread", "classProperties"],
               sourceType: "module",
               sourceFilename: this.resource
             };
