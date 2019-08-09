@@ -3,18 +3,18 @@
 exports[`README 1`] = `
 Object {
   "hashmap": Object {
-    "1054487305": "este-texto-tambem-mas-sem-as-exclamacoes",
-    "1105371475": "erro-de-entrada",
-    "1350806831": "incluir-este-texto",
-    "2161373089": "label_lowercase",
-    "2994568279": "nome-do-usuario",
-    "3102868937": "constantname",
-    "3251541170": "error_lowercase",
-    "3251814319": "meu-texto-internacionalizavel",
-    "3375576029": "text_lowercase",
-    "3796890060": "ignore-this-text",
-    "885157645": "react_lowercase",
-    "922874748": "my-ignored-classname_lowercase",
+    "8/BTHeP7pAu6GkjAwe3rTcVuzz0=": "constantname",
+    "EflXjQXm97tYo83QAQfp9OOIJnE=": "error_lowercase",
+    "Ny6gjKsz5xwCxlHbyDpHTTLGduo=": "text_lowercase",
+    "QXwuSw4lbgtM+LaLx8qIgozrTfQ=": "este-texto-tambem-mas-sem-as-exclamacoes",
+    "QthXYQhW8rC4q6OZfKtjm3psLQA=": "ignore-this-text",
+    "R+7cRQjHltgb5zEMPL72ar9NhJM=": "nome-do-usuario",
+    "Rmwka0DwTyANlKdY+KmY+2+nsh8=": "incluir-este-texto",
+    "ZMZTdNurb+N2J0gZbZ06lhDi5ak=": "label_lowercase",
+    "a4EMkKqamYWCMMPV7UeQlqGQ+ks=": "react_lowercase",
+    "aCHIG16g15f1w5peipW8B0Ckmto=": "my-ignored-classname_lowercase",
+    "e3O0FHnka5/t4mC69D08PIWAoeE=": "erro-de-entrada",
+    "orP5FWfND2ag0kKwjlLNVUaDcwI=": "meu-texto-internacionalizavel",
   },
   "ignored": Object {
     "constantname": "constantName",
@@ -38,7 +38,7 @@ Object {
 exports[`test 1 1`] = `
 Object {
   "hashmap": Object {
-    "2951570100": "este-texto-precisa-ser-extraido",
+    "bRc43KdTg0eYkvRTPRtMSeLbRE8=": "este-texto-precisa-ser-extraido",
   },
   "ignored": Object {
     "este-texto-precisa-ser-extraido": "Este texto precisa ser extraído",
@@ -50,14 +50,14 @@ Object {
 exports[`test com jsx 1`] = `
 Object {
   "hashmap": Object {
-    "1090290174": "ignorethisword",
-    "1836160639": "http-www-ignorar-esta-url-com-br_lowercase",
-    "2639710208": "mb-2-ignorethis_lowercase",
-    "2951570100": "este-texto-precisa-ser-extraido",
-    "4261676902": "este-e-um-label-e-precisa-ser-extraido",
-    "4261757570": "nao-reembolsavel",
-    "576345883": "3_lowercase",
-    "885157645": "react_lowercase",
+    "/2V0gP849V1eKW/IftUR/o2oWtc=": "mb-2-ignorethis_lowercase",
+    "EBWrVdq4vJtFkVHDgqixjiQ95ug=": "nao-reembolsavel",
+    "QdJ5EPNRQcnBlEDFnSKgOb2v18s=": "http-www-ignorar-esta-url-com-br_lowercase",
+    "WQ5JOinjNxjs7rvyJmB/DK4PhRk=": "este-e-um-label-e-precisa-ser-extraido",
+    "a4EMkKqamYWCMMPV7UeQlqGQ+ks=": "react_lowercase",
+    "bRc43KdTg0eYkvRTPRtMSeLbRE8=": "este-texto-precisa-ser-extraido",
+    "d95o2uzYI7q7tY7bHI4U1xBug7s=": "3_lowercase",
+    "vp5B8E4KI553YPQ+kHD7SVLwbHg=": "ignorethisword",
   },
   "ignored": Object {
     "3_lowercase": "3",
@@ -77,9 +77,9 @@ Object {
 exports[`test com jsx 2 1`] = `
 Object {
   "hashmap": Object {
-    "576345883": "3_lowercase",
-    "74761743": "mb-2-ignorethis-second-time_lowercase",
-    "885157645": "react_lowercase",
+    "a4EMkKqamYWCMMPV7UeQlqGQ+ks=": "react_lowercase",
+    "d95o2uzYI7q7tY7bHI4U1xBug7s=": "3_lowercase",
+    "h4NyoTJq8/o2WlCpweZhbJZIfDI=": "mb-2-ignorethis-second-time_lowercase",
   },
   "ignored": Object {
     "3_lowercase": "3",
@@ -93,8 +93,8 @@ Object {
 exports[`teste ignorar jquery 1`] = `
 Object {
   "hashmap": Object {
-    "1313446134": "selectorjquery_lowercase",
-    "2383043738": "jquery_lowercase",
+    "TUHsOdVilEfkpAUkKnCEd4EkNzE=": "selectorjquery_lowercase",
+    "byq5Y7WlHRVdaawJHlLlBtEFUFc=": "jquery_lowercase",
   },
   "ignored": Object {
     "jquery_lowercase": "jquery",
@@ -115,7 +115,7 @@ Object {
 exports[`teste template com jsx 1`] = `
 Object {
   "hashmap": Object {
-    "3448505072": "ignorethis_lowercase",
+    "UBvigzwxfajG62eIHZTfMgWcAQI=": "ignorethis_lowercase",
   },
   "ignored": Object {
     "ignorethis_lowercase": "ignorethis",
