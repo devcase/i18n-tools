@@ -2,8 +2,8 @@ import * as babel from "@babel/core"
 import * as babelParser from "@babel/parser";
 import traverse from "@babel/traverse";
 import defineKey from "./define-key";
-import farmhash from 'farmhash';
 import ignorePath from './ignore-ast-path';
+import crypto from 'crypto'
 
 export default function extractText(input, filename, options) {
     // let {code} = babel.transform(input, {
@@ -43,7 +43,7 @@ export default function extractText(input, filename, options) {
         if(value === "") return;
 
         value = value.indexOf("i18n:") === 0 ? value.substring(5): value
-        let hash = farmhash.hash32(value);
+        let hash = crypto.createHash('sha1').update(value).digest('base64');
         
         if(!hashmap[hash]) {
             let key = defineKey(value);

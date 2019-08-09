@@ -17,9 +17,9 @@ var _traverse = _interopRequireDefault(require("@babel/traverse"));
 
 var _defineKey = _interopRequireDefault(require("./define-key"));
 
-var _farmhash = _interopRequireDefault(require("farmhash"));
-
 var _ignoreAstPath = _interopRequireDefault(require("./ignore-ast-path"));
+
+var _crypto = _interopRequireDefault(require("crypto"));
 
 function extractText(input, filename, options) {
   // let {code} = babel.transform(input, {
@@ -52,7 +52,7 @@ function extractText(input, filename, options) {
     if (value === "") return;
     value = value.indexOf("i18n:") === 0 ? value.substring(5) : value;
 
-    var hash = _farmhash.default.hash32(value);
+    var hash = _crypto.default.createHash('sha1').update(value).digest('base64');
 
     if (!hashmap[hash]) {
       var key = (0, _defineKey.default)(value);
