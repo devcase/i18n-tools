@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = _default;
+exports["default"] = _default;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -22,8 +22,8 @@ var _extractText2 = _interopRequireDefault(require("../commons/extract-text"));
 var _mkdirp = require("mkdirp");
 
 function readdir(dirname, includeDotfiles, filter) {
-  return (0, _fsReaddirRecursive.default)(dirname, function (filename, _index, currentDirectory) {
-    var stat = _fs.default.statSync(_path.default.join(currentDirectory, filename));
+  return (0, _fsReaddirRecursive["default"])(dirname, function (filename, _index, currentDirectory) {
+    var stat = _fs["default"].statSync(_path["default"].join(currentDirectory, filename));
 
     if (stat.isDirectory()) return true;
     return (includeDotfiles || filename[0] !== ".") && (!filter || filter(filename));
@@ -31,20 +31,20 @@ function readdir(dirname, includeDotfiles, filter) {
 }
 
 function deleteDir(path) {
-  if (_fs.default.existsSync(path)) {
-    _fs.default.readdirSync(path).forEach(function (file) {
+  if (_fs["default"].existsSync(path)) {
+    _fs["default"].readdirSync(path).forEach(function (file) {
       var curPath = path + "/" + file;
 
-      if (_fs.default.lstatSync(curPath).isDirectory()) {
+      if (_fs["default"].lstatSync(curPath).isDirectory()) {
         // recurse
         deleteDir(curPath);
       } else {
         // delete file
-        _fs.default.unlinkSync(curPath);
+        _fs["default"].unlinkSync(curPath);
       }
     });
 
-    _fs.default.rmdirSync(path);
+    _fs["default"].rmdirSync(path);
   }
 }
 
@@ -53,26 +53,26 @@ function _default(_x) {
 }
 
 function _ref() {
-  _ref = (0, _asyncToGenerator2.default)(
+  _ref = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee3(cliOptions) {
+  _regenerator["default"].mark(function _callee3(cliOptions) {
     var filenames, stringDest, ignoredDest, hashMapDest, getDest, handle, _handle, allstrings, allhashmap, allignored, handleFile, _handleFile;
 
-    return _regenerator.default.wrap(function _callee3$(_context3) {
+    return _regenerator["default"].wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _handleFile = function _ref6() {
-              _handleFile = (0, _asyncToGenerator2.default)(
+              _handleFile = (0, _asyncToGenerator2["default"])(
               /*#__PURE__*/
-              _regenerator.default.mark(function _callee2(src, base) {
+              _regenerator["default"].mark(function _callee2(src, base) {
                 var code, _extractText, strings, hashmap, ignored;
 
-                return _regenerator.default.wrap(function _callee2$(_context2) {
+                return _regenerator["default"].wrap(function _callee2$(_context2) {
                   while (1) {
                     switch (_context2.prev = _context2.next) {
                       case 0:
-                        if (!(_path.default.extname(src) !== ".js")) {
+                        if (!(_path["default"].extname(src) !== ".js")) {
                           _context2.next = 2;
                           break;
                         }
@@ -81,10 +81,10 @@ function _ref() {
 
                       case 2:
                         console.log("File: ".concat(src));
-                        code = _fs.default.readFileSync(src, {
+                        code = _fs["default"].readFileSync(src, {
                           encoding: "UTF-8"
                         });
-                        _extractText = (0, _extractText2.default)(code, src), strings = _extractText.strings, hashmap = _extractText.hashmap, ignored = _extractText.ignored;
+                        _extractText = (0, _extractText2["default"])(code, src), strings = _extractText.strings, hashmap = _extractText.hashmap, ignored = _extractText.ignored;
                         Object.assign(allstrings, strings);
                         Object.assign(allhashmap, hashmap);
                         allignored[src] = ignored;
@@ -94,7 +94,7 @@ function _ref() {
                         return _context2.stop();
                     }
                   }
-                }, _callee2, this);
+                }, _callee2);
               }));
               return _handleFile.apply(this, arguments);
             };
@@ -104,15 +104,15 @@ function _ref() {
             };
 
             _handle = function _ref4() {
-              _handle = (0, _asyncToGenerator2.default)(
+              _handle = (0, _asyncToGenerator2["default"])(
               /*#__PURE__*/
-              _regenerator.default.mark(function _callee(filenameOrDir) {
+              _regenerator["default"].mark(function _callee(filenameOrDir) {
                 var stat, dirname, files, filename;
-                return _regenerator.default.wrap(function _callee$(_context) {
+                return _regenerator["default"].wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
-                        if (_fs.default.existsSync(filenameOrDir)) {
+                        if (_fs["default"].existsSync(filenameOrDir)) {
                           _context.next = 2;
                           break;
                         }
@@ -121,7 +121,7 @@ function _ref() {
 
                       case 2:
                         console.log("Handling: ".concat(filenameOrDir));
-                        stat = _fs.default.statSync(filenameOrDir);
+                        stat = _fs["default"].statSync(filenameOrDir);
 
                         if (!stat.isDirectory()) {
                           _context.next = 10;
@@ -131,21 +131,21 @@ function _ref() {
                         dirname = filenameOrDir;
                         files = readdir(dirname, cliOptions.includeDotfiles);
                         return _context.abrupt("return", Promise.all(files.map(function (filename) {
-                          var src = _path.default.join(dirname, filename);
+                          var src = _path["default"].join(dirname, filename);
 
                           return handleFile(src, dirname);
                         })));
 
                       case 10:
                         filename = filenameOrDir;
-                        return _context.abrupt("return", handleFile(filename, _path.default.dirname(filename)));
+                        return _context.abrupt("return", handleFile(filename, _path["default"].dirname(filename)));
 
                       case 12:
                       case "end":
                         return _context.stop();
                     }
                   }
-                }, _callee, this);
+                }, _callee);
               }));
               return _handle.apply(this, arguments);
             };
@@ -156,10 +156,10 @@ function _ref() {
 
             getDest = function _ref2(filename, base) {
               if (cliOptions.relative) {
-                return _path.default.join(base, cliOptions.outDir, filename);
+                return _path["default"].join(base, cliOptions.outDir, filename);
               }
 
-              return _path.default.join(cliOptions.outDir, filename);
+              return _path["default"].join(cliOptions.outDir, filename);
             };
 
             filenames = cliOptions.filenames;
@@ -169,9 +169,9 @@ function _ref() {
             hashMapDest = getDest("hashmap.i18n", cliOptions.outDir);
 
             if (cliOptions.deleteDirOnStart) {
-              if (_fs.default.existsSync(stringDest)) _fs.default.unlinkSync(stringDest);
-              if (_fs.default.existsSync(ignoredDest)) _fs.default.unlinkSync(ignoredDest);
-              if (_fs.default.existsSync(hashMapDest)) _fs.default.unlinkSync(hashMapDest);
+              if (_fs["default"].existsSync(stringDest)) _fs["default"].unlinkSync(stringDest);
+              if (_fs["default"].existsSync(ignoredDest)) _fs["default"].unlinkSync(ignoredDest);
+              if (_fs["default"].existsSync(hashMapDest)) _fs["default"].unlinkSync(hashMapDest);
             }
 
             allstrings = {};
@@ -186,26 +186,26 @@ function _ref() {
             Object.keys(allstrings).sort(function (a, b) {
               return a.substring(11).localeCompare(b.substring(11));
             }).forEach(function (key) {
-              _fs.default.appendFileSync(stringDest, "".concat(key, " = ").concat(allstrings[key], "\n"));
+              _fs["default"].appendFileSync(stringDest, "".concat(key, " = ").concat(allstrings[key], "\n"));
             });
             Object.keys(allignored).forEach(function (src) {
-              _fs.default.appendFileSync(ignoredDest, "\n\n## ".concat(src, "\n\n"));
+              _fs["default"].appendFileSync(ignoredDest, "\n\n## ".concat(src, "\n\n"));
 
               Object.keys(allignored[src]).sort(function (a, b) {
                 return a.substring(11).localeCompare(b.substring(11));
               }).forEach(function (key) {
-                _fs.default.appendFileSync(ignoredDest, "".concat(key, " = ").concat(allignored[src][key], "\n"));
+                _fs["default"].appendFileSync(ignoredDest, "".concat(key, " = ").concat(allignored[src][key], "\n"));
               });
             });
 
-            _fs.default.appendFileSync(hashMapDest, JSON.stringify(allhashmap, null, 2));
+            _fs["default"].appendFileSync(hashMapDest, JSON.stringify(allhashmap, null, 2));
 
           case 19:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, this);
+    }, _callee3);
   }));
   return _ref.apply(this, arguments);
 }

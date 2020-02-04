@@ -7,7 +7,7 @@ var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWild
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = extractText;
+exports["default"] = extractText;
 
 var babel = _interopRequireWildcard(require("@babel/core"));
 
@@ -52,13 +52,13 @@ function extractText(input, filename, options) {
     if (value === "") return;
     value = value.indexOf("i18n:") === 0 ? value.substring(5) : value;
 
-    var hash = _crypto.default.createHash('sha1').update(value).digest('base64');
+    var hash = _crypto["default"].createHash('sha1').update(value).digest('base64');
 
     if (!hashmap[hash]) {
-      var key = (0, _defineKey.default)(value);
+      var key = (0, _defineKey["default"])(value);
       hashmap[hash] = key;
 
-      if ((0, _ignoreAstPath.default)(path)) {
+      if ((0, _ignoreAstPath["default"])(path)) {
         ignored[key] = value;
       } else {
         strings[key] = value;
@@ -70,7 +70,7 @@ function extractText(input, filename, options) {
     StringLiteral: processStringPath,
     JSXText: processStringPath
   };
-  (0, _traverse.default)(ast, visitor);
+  (0, _traverse["default"])(ast, visitor);
   return {
     strings: strings,
     hashmap: hashmap,

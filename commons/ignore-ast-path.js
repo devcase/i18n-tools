@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = _default;
+exports["default"] = _default;
 
 function findParentWithType(path, type) {
   if (path.parent && path.parent.type === type) {

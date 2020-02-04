@@ -38,3 +38,14 @@ var text = \\"i18n:Meu texto internacionalizável\\"
 export default text
 "
 `;
+
+exports[`Test webpack-i18n with optional chaining 1`] = `
+"const f = () => {
+  const o = \\"teste\\";
+  console.log((o?.b?.c));
+};
+
+export default f;"
+`;
+
+exports[`Test webpack-i18n with optional chaining 2`] = `"import './optionalChaining?locale=en-US'"`;

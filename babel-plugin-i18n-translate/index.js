@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _ignoreAstPath = _interopRequireDefault(require("../commons/ignore-ast-path"));
 
@@ -29,9 +29,9 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
 
   if (locale) {
     //loads translation file from `i18n/<locale>/translations.ftl`
-    var translationsFile = locale.length > 0 ? _path.default.join('i18n', locale, 'translations.ftl') : _path.default.join('i18n', 'translations.ftl');
+    var translationsFile = locale.length > 0 ? _path["default"].join('i18n', locale, 'translations.ftl') : _path["default"].join('i18n', 'translations.ftl');
 
-    var translationFileContents = _fs.default.readFileSync(translationsFile, {
+    var translationFileContents = _fs["default"].readFileSync(translationsFile, {
       encoding: "UTF-8"
     });
 
@@ -49,7 +49,7 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
 
   var manipulator = {
     exit: function exit(path) {
-      if (!(0, _ignoreAstPath.default)(path)) {
+      if (!(0, _ignoreAstPath["default"])(path)) {
         var value = path.node.value;
         if (!value || value.trim() === "" || !value.match(wordregex)) return;
         var limits = [value.match(wordregex).index, value.length - value.split("").reverse().join("").match(wordregex).index];
@@ -57,7 +57,7 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
         var after = value.substring(limits[1]);
         value = value.substring(limits[0], limits[1]);
         if (value.indexOf("i18n:") === 0) value = value.substring("i18n:".length);
-        var key = (0, _defineKey.default)(value);
+        var key = (0, _defineKey["default"])(value);
         var i18nvalue = getText(key, value);
 
         if (i18nvalue) {
@@ -81,4 +81,4 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
   };
 });
 
-exports.default = _default;
+exports["default"] = _default;
