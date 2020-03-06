@@ -43,7 +43,7 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
     };
   } else {
     getText = function getText(key, text) {
-      return "i18n:" + text;
+      return text;
     };
   }
 
@@ -51,6 +51,7 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
     exit: function exit(path) {
       if (!(0, _ignoreAstPath["default"])(path)) {
         var value = path.node.value;
+        console.log(JSON.stringify(path.node));
         if (!value || value.trim() === "" || !value.match(wordregex)) return;
         var limits = [value.match(wordregex).index, value.length - value.split("").reverse().join("").match(wordregex).index];
         var before = value.substring(0, limits[0]);
@@ -61,7 +62,11 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
         var i18nvalue = getText(key, value);
 
         if (i18nvalue) {
-          path.node.value = before + i18nvalue + after;
+          if (_core.types.isStringLiteral(path.node)) {
+            path.replaceWith(_core.types.stringLiteral(before + i18nvalue + after));
+          } else if (_core.types.isJSXText(path.node)) {
+            path.replaceWith(_core.types.jsxText(before + i18nvalue + after));
+          }
         }
 
         path.skip();

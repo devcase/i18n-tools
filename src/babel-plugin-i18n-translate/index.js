@@ -22,7 +22,7 @@ export default declare((api, options) => {
         bundle.addMessages(ftl([translationFileContents]));
         getText = (key, text) => bundle.getMessage(key) || text
     } else {
-        getText = (key, text) => "i18n:" + text
+        getText = (key, text) => text
     }
         
 
@@ -30,6 +30,7 @@ export default declare((api, options) => {
         exit(path) {
             if (!ignorePath(path)) {
                 let value = path.node.value;
+                console.log(JSON.stringify(path.node))
                 if(!value || value.trim() === "" || !value.match(wordregex)) return;
 
                 const limits = [
@@ -47,7 +48,12 @@ export default declare((api, options) => {
                 let i18nvalue = getText(key, value);
 
                 if(i18nvalue) {
-                    path.node.value = before + i18nvalue + after;
+                    if(t.isStringLiteral(path.node)) {
+                        path.replaceWith(t.stringLiteral(before + i18nvalue + after));
+                    } else if(t.isJSXText(path.node)) {
+                        path.replaceWith(t.jsxText(before + i18nvalue + after));
+
+                    }
                 }
                 path.skip();
             }
