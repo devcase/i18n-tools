@@ -30,7 +30,6 @@ export default declare((api, options) => {
         exit(path) {
             if (!ignorePath(path)) {
                 let value = path.node.value;
-                console.log(JSON.stringify(path.node))
                 if(!value || value.trim() === "" || !value.match(wordregex)) return;
 
                 const limits = [

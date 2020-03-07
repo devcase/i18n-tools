@@ -51,7 +51,6 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
     exit: function exit(path) {
       if (!(0, _ignoreAstPath["default"])(path)) {
         var value = path.node.value;
-        console.log(JSON.stringify(path.node));
         if (!value || value.trim() === "" || !value.match(wordregex)) return;
         var limits = [value.match(wordregex).index, value.length - value.split("").reverse().join("").match(wordregex).index];
         var before = value.substring(0, limits[0]);
