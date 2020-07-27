@@ -6,7 +6,7 @@ import path from 'path'
 import { declare } from "@babel/helper-plugin-utils";
 import { types as t } from "@babel/core";
 
-const wordregex = /\w/
+const wordregex = /[0-9A-Za-zÀ-ÿ]/
 
 export default declare((api, options) => {
     
@@ -50,7 +50,7 @@ export default declare((api, options) => {
                     let newNode
                     if(t.isStringLiteral(path.node)) {
                         newNode = (t.stringLiteral(before + i18nvalue + after));
-                        newNode.extra = { rawValue: before + i18nvalue + after, raw: `'${before + i18nvalue.replace('\'','\\\'') + after}'`}
+                        newNode.extra = { rawValue: before + i18nvalue + after, raw: JSON.stringify(before + i18nvalue + after)}
                         path.replaceWith(newNode)
                     } else if(t.isJSXText(path.node)) {
                         newNode = (t.jsxText(before + i18nvalue + after));

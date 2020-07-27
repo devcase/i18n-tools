@@ -9,8 +9,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = extractText;
 
-var babel = _interopRequireWildcard(require("@babel/core"));
-
 var babelParser = _interopRequireWildcard(require("@babel/parser"));
 
 var _traverse = _interopRequireDefault(require("@babel/traverse"));

@@ -146,12 +146,8 @@ module.exports = function (content, map, meta) {
 
   var callback = this.async();
 
-  var asyncFunction =
-  /*#__PURE__*/
-  function () {
-    var _ref = (0, _asyncToGenerator2["default"])(
-    /*#__PURE__*/
-    _regenerator["default"].mark(function _callee2(content) {
+  var asyncFunction = /*#__PURE__*/function () {
+    var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(content) {
       var options, condition, resolve, resources, parserOpts, ast;
       return _regenerator["default"].wrap(function _callee2$(_context2) {
         while (1) {
@@ -178,12 +174,8 @@ module.exports = function (content, map, meta) {
               })); //wait for all requests done
 
               _context2.next = 9;
-              return Promise.all(Object.keys(resources).map(
-              /*#__PURE__*/
-              function () {
-                var _ref2 = (0, _asyncToGenerator2["default"])(
-                /*#__PURE__*/
-                _regenerator["default"].mark(function _callee(request) {
+              return Promise.all(Object.keys(resources).map( /*#__PURE__*/function () {
+                var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(request) {
                   return _regenerator["default"].wrap(function _callee$(_context) {
                     while (1) {
                       switch (_context.prev = _context.next) {

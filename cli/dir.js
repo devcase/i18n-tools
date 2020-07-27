@@ -53,9 +53,7 @@ function _default(_x) {
 }
 
 function _ref() {
-  _ref = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee3(cliOptions) {
+  _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(cliOptions) {
     var filenames, stringDest, ignoredDest, hashMapDest, getDest, handle, _handle, allstrings, allhashmap, allignored, handleFile, _handleFile;
 
     return _regenerator["default"].wrap(function _callee3$(_context3) {
@@ -63,9 +61,7 @@ function _ref() {
         switch (_context3.prev = _context3.next) {
           case 0:
             _handleFile = function _handleFile3() {
-              _handleFile = (0, _asyncToGenerator2["default"])(
-              /*#__PURE__*/
-              _regenerator["default"].mark(function _callee2(src, base) {
+              _handleFile = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(src, base) {
                 var code, _extractText, strings, hashmap, ignored;
 
                 return _regenerator["default"].wrap(function _callee2$(_context2) {
@@ -104,9 +100,7 @@ function _ref() {
             };
 
             _handle = function _handle3() {
-              _handle = (0, _asyncToGenerator2["default"])(
-              /*#__PURE__*/
-              _regenerator["default"].mark(function _callee(filenameOrDir) {
+              _handle = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(filenameOrDir) {
                 var stat, dirname, files, filename;
                 return _regenerator["default"].wrap(function _callee$(_context) {
                   while (1) {

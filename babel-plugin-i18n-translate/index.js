@@ -21,7 +21,7 @@ var _helperPluginUtils = require("@babel/helper-plugin-utils");
 
 var _core = require("@babel/core");
 
-var wordregex = /\w/;
+var wordregex = /[0-9A-Za-zÀ-ÿ]/;
 
 var _default = (0, _helperPluginUtils.declare)(function (api, options) {
   var locale = options.locale;

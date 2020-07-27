@@ -25,38 +25,38 @@ it("works", () => {
   expect(code).toMatchSnapshot();
 });
 
-it.only("com apostofre", () => {
+it("com apostofre", () => {
   const example = `
-    const x = {
-        label: 'E-mail do solicitante'
-    }
+const x = {
+  label: 'E-mail do solicitante'
+}
 `;
 
   const { code } = babel.transform(example, {
     configFile: false,
     plugins: [[plugin, { locale: "en-US" }]],
   });
-  expect(code).toBe(`
-    const x = {
-        label: 'Requestor\\\'s email'
-    }
-`);
+  expect(code).toBe(`const x = {
+  label: "Requestor\'s email"
+};`);
 });
 
 it("espanol", () => {
-  const example = `
-    const x = {
-        label: 'Últimas 24 horas'
-    }
-`;
+  const example = `const x = {
+  label: 'Últimas 24 horas',
+  test: {
+    label: 'Novo'
+  }
+};`;
 
   const { code } = babel.transform(example, {
+    configFile: false,
     plugins: [[plugin, { locale: "es" }]],
   });
-  expect(code).toBe(`"use strict";
-
-  var x = {
-      label: 'Últimas 24 horas'
+  expect(code).toBe(`const x = {
+  label: "Últimas 24 horas2",
+  test: {
+    label: "Nuevo"
   }
-`);
+};`);
 });
