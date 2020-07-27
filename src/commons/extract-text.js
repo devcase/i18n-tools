@@ -1,4 +1,3 @@
-import * as babel from "@babel/core"
 import * as babelParser from "@babel/parser";
 import traverse from "@babel/traverse";
 import defineKey from "./define-key";
@@ -26,7 +25,7 @@ export default function extractText(input, filename, options) {
     const strings = {}
     const hashmap = {}
     const ignored = {}
-    const wordregex = /\w/
+    const wordregex = /[0-9A-Za-zÀ-ÿ]/
 
     function processStringPath(path) {
 

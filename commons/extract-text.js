@@ -42,7 +42,7 @@ function extractText(input, filename, options) {
   var strings = {};
   var hashmap = {};
   var ignored = {};
-  var wordregex = /\w/;
+  var wordregex = /[0-9A-Za-zÀ-ÿ]/;
 
   function processStringPath(path) {
     var value = path.node.value;

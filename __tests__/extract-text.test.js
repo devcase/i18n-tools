@@ -96,18 +96,20 @@ test("README", () => {
 })
 
 
-test.only("últimas 24 horas", () => {
+test("últimas 24 horas", () => {
     const code = `import React from 'react'
 
     export default function (props) {
         return <div className="my-ignored-classname">
             <h1>Últimas 24 horas</h1>
+            <div>12 Horas</div>
         </div>
     }
     `
     const results = extractText(code, "README.md")
     expect(results).toMatchObject({
         strings: {
+            '12-horas': '12 Horas',
             'ultimas-24-horas': 'Últimas 24 horas'
         }
     })
