@@ -50,7 +50,7 @@ export default declare((api, options) => {
                     let newNode
                     if(t.isStringLiteral(path.node)) {
                         newNode = (t.stringLiteral(before + i18nvalue + after));
-                        newNode.extra = { rawValue: before + i18nvalue + after, raw: `'${before + i18nvalue + after}'`}
+                        newNode.extra = { rawValue: before + i18nvalue + after, raw: `'${before + i18nvalue.replace('\'','\\\'') + after}'`}
                         path.replaceWith(newNode)
                     } else if(t.isJSXText(path.node)) {
                         newNode = (t.jsxText(before + i18nvalue + after));

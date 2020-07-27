@@ -36,11 +36,10 @@ it.only("com apostofre", () => {
     configFile: false,
     plugins: [[plugin, { locale: "en-US" }]],
   });
-  expect(code).toBe(`"use strict";
-
-  var x = {
-      label: 'Requestor\'s email'
-  }
+  expect(code).toBe(`
+    const x = {
+        label: 'Requestor\\\'s email'
+    }
 `);
 });
 
