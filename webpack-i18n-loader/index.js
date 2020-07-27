@@ -166,11 +166,10 @@ module.exports = function (content, map, meta) {
               resources = {};
               parserOpts = {
                 sourceMaps: _this.sourceMap,
-                plugins: ["jsx", "dynamicImport", "objectRestSpread", "classProperties", "optionalChaining"],
+                plugins: options.parserPlugins || ["jsx", "dynamicImport", "objectRestSpread", "classProperties", "optionalChaining"],
                 sourceType: "module",
                 sourceFilename: _this.resource
-              }; // return { code: "const x" }
-
+              };
               ast = babelParser.parse(content, parserOpts); //resolve all imports (async)
 
               traverse(ast, createVisitor(function (node) {

@@ -94,3 +94,21 @@ test("README", () => {
     const results = extractText(code, "README.md")
     expect(results).toMatchSnapshot()
 })
+
+
+test.only("últimas 24 horas", () => {
+    const code = `import React from 'react'
+
+    export default function (props) {
+        return <div className="my-ignored-classname">
+            <h1>Últimas 24 horas</h1>
+        </div>
+    }
+    `
+    const results = extractText(code, "README.md")
+    expect(results).toMatchObject({
+        strings: {
+            'ultimas-24-horas': 'Últimas 24 horas'
+        }
+    })
+})

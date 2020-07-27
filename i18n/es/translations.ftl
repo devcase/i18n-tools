@@ -1,0 +1,1 @@
+ultimas-24-horas = Últimas 24 horas2

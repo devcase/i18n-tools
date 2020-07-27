@@ -19,3 +19,8 @@ test("Formato: +{código país}{código estado}{telefone}", () => {
 test("(total com impostos e taxas)", () => {
     expect(defineKey("(total com impostos e taxas)")).toMatchSnapshot()
 })
+
+
+test("Últimas 24 horas", () => {
+    expect(defineKey("Últimas 24 horas")).toBe('ultimas-24-horas')
+})

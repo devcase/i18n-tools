@@ -62,7 +62,7 @@ function _ref() {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _handleFile = function _ref6() {
+            _handleFile = function _handleFile3() {
               _handleFile = (0, _asyncToGenerator2["default"])(
               /*#__PURE__*/
               _regenerator["default"].mark(function _callee2(src, base) {
@@ -99,11 +99,11 @@ function _ref() {
               return _handleFile.apply(this, arguments);
             };
 
-            handleFile = function _ref5(_x3, _x4) {
+            handleFile = function _handleFile2(_x3, _x4) {
               return _handleFile.apply(this, arguments);
             };
 
-            _handle = function _ref4() {
+            _handle = function _handle3() {
               _handle = (0, _asyncToGenerator2["default"])(
               /*#__PURE__*/
               _regenerator["default"].mark(function _callee(filenameOrDir) {
@@ -150,11 +150,11 @@ function _ref() {
               return _handle.apply(this, arguments);
             };
 
-            handle = function _ref3(_x2) {
+            handle = function _handle2(_x2) {
               return _handle.apply(this, arguments);
             };
 
-            getDest = function _ref2(filename, base) {
+            getDest = function _getDest(filename, base) {
               if (cliOptions.relative) {
                 return _path["default"].join(base, cliOptions.outDir, filename);
               }
