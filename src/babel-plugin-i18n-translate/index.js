@@ -22,14 +22,14 @@ export default declare((api, options) => {
         bundle.addMessages(ftl([translationFileContents]));
         getText = (key, text) => bundle.getMessage(key) || text
     } else {
-        getText = (key, text) => "i18n:" + text
+        getText = (key, text) => text
     }
         
 
     const manipulator = {
         exit(path) {
             if (!ignorePath(path)) {
-                let value = path.node.value;
+                let value = path.node.extra && path.node.extra.rawValue ? path.node.extra.rawValue : path.node.value;
                 if(!value || value.trim() === "" || !value.match(wordregex)) return;
 
                 const limits = [
@@ -47,7 +47,17 @@ export default declare((api, options) => {
                 let i18nvalue = getText(key, value);
 
                 if(i18nvalue) {
-                    path.node.value = before + i18nvalue + after;
+                    let newNode
+                    if(t.isStringLiteral(path.node)) {
+                        newNode = (t.stringLiteral(before + i18nvalue + after));
+                        newNode.extra = { rawValue: before + i18nvalue + after, raw: `'${before + i18nvalue + after}'`}
+                        path.replaceWith(newNode)
+                    } else if(t.isJSXText(path.node)) {
+                        newNode = (t.jsxText(before + i18nvalue + after));
+                        path.replaceWith(newNode)
+                    } else {
+                        path.node.value = before + i18nvalue + after
+                    }
                 }
                 path.skip();
             }

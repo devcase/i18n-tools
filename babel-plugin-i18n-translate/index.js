@@ -43,14 +43,14 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
     };
   } else {
     getText = function getText(key, text) {
-      return "i18n:" + text;
+      return text;
     };
   }
 
   var manipulator = {
     exit: function exit(path) {
       if (!(0, _ignoreAstPath["default"])(path)) {
-        var value = path.node.value;
+        var value = path.node.extra && path.node.extra.rawValue ? path.node.extra.rawValue : path.node.value;
         if (!value || value.trim() === "" || !value.match(wordregex)) return;
         var limits = [value.match(wordregex).index, value.length - value.split("").reverse().join("").match(wordregex).index];
         var before = value.substring(0, limits[0]);
@@ -61,7 +61,21 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
         var i18nvalue = getText(key, value);
 
         if (i18nvalue) {
-          path.node.value = before + i18nvalue + after;
+          var newNode;
+
+          if (_core.types.isStringLiteral(path.node)) {
+            newNode = _core.types.stringLiteral(before + i18nvalue + after);
+            newNode.extra = {
+              rawValue: before + i18nvalue + after,
+              raw: "'".concat(before + i18nvalue + after, "'")
+            };
+            path.replaceWith(newNode);
+          } else if (_core.types.isJSXText(path.node)) {
+            newNode = _core.types.jsxText(before + i18nvalue + after);
+            path.replaceWith(newNode);
+          } else {
+            path.node.value = before + i18nvalue + after;
+          }
         }
 
         path.skip();
