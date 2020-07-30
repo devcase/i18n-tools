@@ -1,11 +1,11 @@
 "use strict";
 
-var babel = require("@babel/core");
-var babelParser = require("@babel/parser");
-var generate = require("@babel/generator").default;
-var traverse = require("@babel/traverse").default;
-var loaderUtils = require("loader-utils");
-var promisify = require("bluebird").promisify;
+const babel = require("@babel/core");
+const babelParser = require("@babel/parser");
+const generate = require("@babel/generator").default;
+const traverse = require("@babel/traverse").default;
+const loaderUtils = require("loader-utils");
+const promisify = require("bluebird").promisify;
 const babelPluginTranslate = require("../babel-plugin-i18n-translate");
 
 const notMatcher = matcher => {
@@ -97,6 +97,11 @@ function createVisitor(nodeProcessor) {
   return {
     ImportDeclaration: function ImportDeclaration(path) {
       nodeProcessor(path.node.source);
+    },
+    ExportDeclaration: function (path) {
+      if(path.node.source) {
+        nodeProcessor(path.node.source);
+      }
     },
     CallExpression: function CallExpression(path) {
       if (path.node.callee.type === "Import") {

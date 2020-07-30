@@ -67,7 +67,7 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
             newNode = _core.types.stringLiteral(before + i18nvalue + after);
             newNode.extra = {
               rawValue: before + i18nvalue + after,
-              raw: "'".concat(before + i18nvalue.replace('\'', '\\\'') + after, "'")
+              raw: JSON.stringify(before + i18nvalue + after)
             };
             path.replaceWith(newNode);
           } else if (_core.types.isJSXText(path.node)) {

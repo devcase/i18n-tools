@@ -2,14 +2,14 @@
 
 exports[`Test webpack-i18n 1`] = `
 "import Level1 from './level1?locale=en-US'
-
 var text = \\"i18n:Meu texto internacionalizável\\"
 console.log(Level1)"
 `;
 
 exports[`Test webpack-i18n 2`] = `
 "//precisa ser atualizado para ./level2?locale=en-US
-import sublevel from \\"./level2?locale=en-US\\"; //Traduzido para inglês
+import sublevel from \\"./level2?locale=en-US\\";
+export { default as level2 } from \\"./level2?locale=en-US\\"; //Traduzido para inglês
 
 var text = \\"My i18n text\\";
 export default sublevel;"
@@ -26,12 +26,6 @@ export default sublevel;"
 `;
 
 exports[`Test webpack-i18n 4`] = `
-"//Traduzido para inglês
-var text = \\"My i18n text\\";
-export default text;"
-`;
-
-exports[`Test webpack-i18n 5`] = `
 "//Não modificado
 var text = \\"i18n:Meu texto internacionalizável\\"
 
@@ -49,3 +43,60 @@ export default f;"
 `;
 
 exports[`Test webpack-i18n with optional chaining 2`] = `"import './optionalChaining?locale=en-US'"`;
+
+exports[`Test webpack-i18n with optional chaining 3`] = `
+"//precisa ser atualizado para ./level3?locale=en-US
+import(\\"./level3\\").then(t => console.log(t.default))
+
+//Não pode mexer em ./level4 (excluído nas regras do webpack)
+import sublevel from './level4'
+
+//Traduzido para inglês
+var text = \\"i18n:Meu texto internacionalizável\\"
+
+export default sublevel
+"
+`;
+
+exports[`Test webpack-i18n with optional chaining 4`] = `
+"//precisa ser atualizado para ./level3?locale=en-US
+import(\\"./level3?locale=en-US\\").then(t => console.log(t.default)); //Não pode mexer em ./level4 (excluído nas regras do webpack)
+
+import sublevel from './level4'; //Traduzido para inglês
+
+var text = \\"My i18n text\\";
+export default sublevel;"
+`;
+
+exports[`Test webpack-i18n with optional chaining 5`] = `
+"//Traduzido para inglês
+var text = \\"i18n:Meu texto internacionalizável\\"
+
+export default text
+"
+`;
+
+exports[`Test webpack-i18n with optional chaining 6`] = `
+"//Traduzido para inglês
+var text = \\"My i18n text\\";
+export default text;"
+`;
+
+exports[`Test webpack-i18n with optional chaining 7`] = `
+"//Não modificado
+var text = \\"i18n:Meu texto internacionalizável\\"
+
+export default text
+"
+`;
+
+exports[`Test webpack-i18n with optional chaining 8`] = `
+"const f = () => {
+  const o = \\"teste\\";
+  console.log((o?.b?.c));
+};
+
+export default f;"
+`;
+
+exports[`Test webpack-i18n with optional chaining 9`] = `"import './optionalChaining?locale=en-US'"`;

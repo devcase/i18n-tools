@@ -16,7 +16,7 @@ module.exports = {
         use: {
           loader: path.resolve(
             __dirname,
-            "../../../src/webpack-i18n-loader/index.js"
+            "../../../src/webpack-i18n-loader/index.ts"
           ),
           options: {
             conditions: {

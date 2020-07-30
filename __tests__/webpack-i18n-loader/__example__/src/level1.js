@@ -1,7 +1,8 @@
 //precisa ser atualizado para ./level2?locale=en-US
-import sublevel from './level2'
+import sublevel from "./level2";
+export { default as level2 } from "./level2";
 
 //Traduzido para inglês
-var text = "i18n:Meu texto internacionalizável"
+var text = "i18n:Meu texto internacionalizável";
 
-export default sublevel
+export default sublevel;
