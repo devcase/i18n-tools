@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
@@ -19,7 +21,7 @@ var _path = _interopRequireDefault(require("path"));
 
 var _helperPluginUtils = require("@babel/helper-plugin-utils");
 
-var _core = require("@babel/core");
+var t = _interopRequireWildcard(require("@babel/types"));
 
 var wordregex = /[0-9A-Za-zÀ-ÿ]/;
 
@@ -29,10 +31,10 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
 
   if (locale) {
     //loads translation file from `i18n/<locale>/translations.ftl`
-    var translationsFile = locale.length > 0 ? _path["default"].join('i18n', locale, 'translations.ftl') : _path["default"].join('i18n', 'translations.ftl');
+    var translationsFile = locale.length > 0 ? _path["default"].join("i18n", locale, "translations.ftl") : _path["default"].join("i18n", "translations.ftl");
 
     var translationFileContents = _fs["default"].readFileSync(translationsFile, {
-      encoding: "UTF-8"
+      encoding: "utf8"
     });
 
     var bundle = new _fluent.FluentBundle(locale);
@@ -50,29 +52,35 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
   var manipulator = {
     exit: function exit(path) {
       if (!(0, _ignoreAstPath["default"])(path)) {
-        var value = path.node.extra && path.node.extra.rawValue ? path.node.extra.rawValue : path.node.value;
+        var value = path.node.extra && path.node.extra.rawValue ? path.node.extra.rawValue : typeof path.node.value === "string" ? path.node.value : path.node.value.raw;
         if (!value || value.trim() === "" || !value.match(wordregex)) return;
-        var limits = [value.match(wordregex).index, value.length - value.split("").reverse().join("").match(wordregex).index];
+        if (value.indexOf("i18n:") === 0) value = value.substring("i18n:".length);
+        var limits = !value.match(wordregex) ? [0, value.length] : [value.match(wordregex).index, value.length - value.split("").reverse().join("").match(wordregex).index];
         var before = value.substring(0, limits[0]);
         var after = value.substring(limits[1]);
         value = value.substring(limits[0], limits[1]);
-        if (value.indexOf("i18n:") === 0) value = value.substring("i18n:".length);
         var key = (0, _defineKey["default"])(value);
         var i18nvalue = getText(key, value);
 
-        if (i18nvalue) {
-          var newNode;
-
-          if (_core.types.isStringLiteral(path.node)) {
-            newNode = _core.types.stringLiteral(before + i18nvalue + after);
+        if (i18nvalue != null) {
+          if (t.isStringLiteral(path.node)) {
+            var newNode = t.stringLiteral(before + i18nvalue + after);
             newNode.extra = {
               rawValue: before + i18nvalue + after,
               raw: JSON.stringify(before + i18nvalue + after)
             };
             path.replaceWith(newNode);
-          } else if (_core.types.isJSXText(path.node)) {
-            newNode = _core.types.jsxText(before + i18nvalue + after);
-            path.replaceWith(newNode);
+          } else if (t.isJSXText(path.node)) {
+            var _newNode = t.jsxText(before + i18nvalue + after);
+
+            path.replaceWith(_newNode);
+          } else if (t.isTemplateElement(path.node)) {
+            var _newNode2 = t.templateElement({
+              raw: before + i18nvalue + after
+            }, path.node.tail);
+
+            path.parent['__i18nenabled__'] = true;
+            path.replaceWith(_newNode2);
           } else {
             path.node.value = before + i18nvalue + after;
           }
@@ -90,7 +98,8 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
     },
     visitor: {
       StringLiteral: manipulator,
-      JSXText: manipulator
+      JSXText: manipulator,
+      TemplateElement: manipulator
     }
   };
 });

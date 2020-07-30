@@ -115,7 +115,7 @@ test("últimas 24 horas", () => {
     })
 })
 
-test.only("import type", () => {
+test("import type", () => {
     const code = `import React from 'react'
     import type * as B from 'module'
 
@@ -131,6 +131,19 @@ test.only("import type", () => {
         strings: {
             '12-horas': '12 Horas',
             'ultimas-24-horas': 'Últimas 24 horas'
+        }
+    })
+})
+
+
+test.only("text template", () => {
+    const code = `const nights = 3; const x = \`i18n:\${nights} noites\`
+
+    `
+    const results = extractText(code, "typescript.tsx")
+    expect(results).toMatchObject({
+        strings: {
+            'noites_lowercase': 'noites'
         }
     })
 })

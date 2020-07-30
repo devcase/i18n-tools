@@ -65,10 +65,9 @@ it("espanol", () => {
 });
 
 
-it.only("typescript", () => {
+it("typescript", () => {
   const example = `import type * as T from 'modulename';
   import { B } from 'module2';
-  
   const x = "i18n:Novo"`;
 
   const { code } = babel.transform(example, {
@@ -78,6 +77,23 @@ it.only("typescript", () => {
   });
   expect(code).toBe(`import type * as T from 'modulename';
 import { B } from 'module2';
+const x = "Nuevo";`);
+});
 
-const x = "Nuevo"`);
+
+it("typescript with template", () => {
+  const example = `import type * as T from 'modulename';
+  import { B } from 'module2';
+  const nights = 4;
+  const x = \`i18n:\${nights} Noites\``;
+
+  const { code } = babel.transform(example, {
+    filename: "test.ts",
+    configFile: false,
+    plugins: [[plugin, { locale: "es" }]],
+  });
+  expect(code).toBe(`import type * as T from 'modulename';
+import { B } from 'module2';
+const nights = 4;
+const x = \`\${nights} Noches\`;`);
 });
