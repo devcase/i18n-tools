@@ -97,3 +97,26 @@ import { B } from 'module2';
 const nights = 4;
 const x = \`\${nights} Noches\`;`);
 });
+
+
+test("teste placeholder hint", () => {
+  const example = `import type * as T from 'modulename';
+  import React from 'react';
+  const nights = 4;
+  const x = () => <InputField
+    type="text"
+    placeholder="Lista de e-mails separados por vírgula (,)"
+    hint="Lista de e-mails separados por vírgula (,)"
+  />;`
+
+  const { code } = babel.transform(example, {
+    filename: "test.tsx",
+    configFile: false,
+    plugins: [[plugin, { locale: "es" }]],
+  });
+  expect(code).toBe(`import type * as T from 'modulename';
+import React from 'react';
+const nights = 4;
+
+const x = () => <InputField type="text" placeholder="Lista de e-mails separados por coma (,)" hint="Lista de e-mails separados por coma (,)" />;`);
+});

@@ -39,7 +39,7 @@ export default function(
 
   const requiredRegex = [/[a-zA-Z]/];
 
-  const validJsxAttributes = ["label", "aria-label", "title", "placeholder"];
+  const validJsxAttributes = ["label", "aria-label", "title", "placeholder", "hint", "labelPlural", "message"];
   const validObjectPropertyKeys = [
     "text",
     "label",
