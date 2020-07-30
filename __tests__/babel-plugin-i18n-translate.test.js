@@ -20,6 +20,7 @@ it("works", () => {
 `;
 
   const { code } = babel.transform(example, {
+    filename: "test.js",
     plugins: [[plugin, { locale: "en-US" }]],
   });
   expect(code).toMatchSnapshot();
@@ -33,6 +34,7 @@ const x = {
 `;
 
   const { code } = babel.transform(example, {
+    filename: "test.js",
     configFile: false,
     plugins: [[plugin, { locale: "en-US" }]],
   });
@@ -50,6 +52,7 @@ it("espanol", () => {
 };`;
 
   const { code } = babel.transform(example, {
+    filename: "test.js",
     configFile: false,
     plugins: [[plugin, { locale: "es" }]],
   });
@@ -59,4 +62,22 @@ it("espanol", () => {
     label: "Nuevo"
   }
 };`);
+});
+
+
+it.only("typescript", () => {
+  const example = `import type * as T from 'modulename';
+  import { B } from 'module2';
+  
+  const x = "i18n:Novo"`;
+
+  const { code } = babel.transform(example, {
+    filename: "test.ts",
+    configFile: false,
+    plugins: [[plugin, { locale: "es" }]],
+  });
+  expect(code).toBe(`import type * as T from 'modulename';
+import { B } from 'module2';
+
+const x = "Nuevo"`);
 });

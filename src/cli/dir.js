@@ -81,7 +81,7 @@ export default async function(cliOptions) {
   let allignored = {};
 
   async function handleFile(src, base) {
-    if (path.extname(src) !== ".js") {
+    if (!path.extname(src).match(/.(js|ts|tsx)$/)) {
       return;
     }
     console.log(`File: ${src}`);

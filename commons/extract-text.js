@@ -30,8 +30,9 @@ function extractText(input, filename, options) {
 
   try {
     ast = babelParser.parse(code, {
+      sourceFilename: filename,
       sourceType: "module",
-      plugins: ["jsx", "objectRestSpread", "dynamicImport", "classProperties"]
+      plugins: ["jsx", "typescript", "objectRestSpread", "dynamicImport", "classProperties", "optionalChaining"]
     });
   } catch (ex) {
     throw new Error("Erro no arquivo " + filename + ": " + ex);

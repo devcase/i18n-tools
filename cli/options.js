@@ -38,7 +38,7 @@ function parseArgv(args) {
 
   var opts = _commander["default"].opts();
 
-  return _objectSpread({}, opts, {
+  return _objectSpread(_objectSpread({}, opts), {}, {
     filenames: filenames
   });
 }

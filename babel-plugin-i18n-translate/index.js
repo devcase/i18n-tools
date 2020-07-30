@@ -84,7 +84,7 @@ var _default = (0, _helperPluginUtils.declare)(function (api, options) {
   };
   return {
     manipulateOptions: function manipulateOptions(opts, parserOpts) {
-      ["jsx", "objectRestSpread", "dynamicImport", "classProperties"].forEach(function (pl) {
+      ["jsx", "typescript", "optionalChaining", "objectRestSpread", "dynamicImport", "classProperties"].forEach(function (pl) {
         return parserOpts.plugins.push(pl);
       });
     },

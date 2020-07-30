@@ -66,7 +66,7 @@ export default declare((api, options) => {
 
     return {
         manipulateOptions(opts, parserOpts) {
-            ["jsx", "objectRestSpread", "dynamicImport", "classProperties"].forEach(pl => parserOpts.plugins.push(pl))
+            ["jsx", "typescript", "optionalChaining", "objectRestSpread", "dynamicImport", "classProperties"].forEach(pl => parserOpts.plugins.push(pl))
         },
         visitor: {
             StringLiteral: manipulator,
