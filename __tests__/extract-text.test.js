@@ -1,15 +1,15 @@
-import extractText from '../src/commons/extract-text'
+import extractText from "../src/commons/extract-text";
 
 test("test 1", () => {
-    const code = `
+  const code = `
         var x = "Este texto precisa ser extraído"
-    `
-    const results = extractText(code);
-    expect(results).toMatchSnapshot()
-})
+    `;
+  const results = extractText(code);
+  expect(results).toMatchSnapshot();
+});
 
 test("test com jsx", () => {
-    const code = `
+  const code = `
         import React from 'react'
         
         function Component(props) {
@@ -23,15 +23,13 @@ test("test com jsx", () => {
                 <span>Não reembolsável</span>
             </div>;
         }
-    `
-    const results = extractText(code)
-    expect(results).toMatchSnapshot()
-
-})
-
+    `;
+  const results = extractText(code);
+  expect(results).toMatchSnapshot();
+});
 
 test("test com jsx 2", () => {
-    const code = `
+  const code = `
         import React from 'react'
         
         function Component(props) {
@@ -40,43 +38,36 @@ test("test com jsx 2", () => {
                 max="3">
             </div>;
         }
-    `
-    const results = extractText(code)
-    expect(results).toMatchSnapshot()
-
-})
+    `;
+  const results = extractText(code);
+  expect(results).toMatchSnapshot();
+});
 
 test("teste ignorar jquery", () => {
-    const code = `
+  const code = `
         import $ from 'jquery'
         
         $('.selectorjquery').hide();
-    `
-    const results = extractText(code, "teste ignorar jquery")
-    expect(results).toMatchSnapshot()
-
-})
-
-
+    `;
+  const results = extractText(code, "teste ignorar jquery");
+  expect(results).toMatchSnapshot();
+});
 
 test("teste template com jsx", () => {
-    const code = "var x = <div className={`room-rate-row row no-gutters ${1==1 ? 'ignorethis' : ''}`}></div>"
-    const results = extractText(code, "teste template")
-    expect(results).toMatchSnapshot()
-
-})
-
+  const code =
+    "var x = <div className={`room-rate-row row no-gutters ${1==1 ? 'ignorethis' : ''}`}></div>";
+  const results = extractText(code, "teste template");
+  expect(results).toMatchSnapshot();
+});
 
 test("teste template 2", () => {
-    const code = "var x = `template precisa ser internacionalizável`"
-    const results = extractText(code, "teste template 2")
-    expect(results).toMatchSnapshot()
-
-})
-
+  const code = "var x = `template precisa ser internacionalizável`";
+  const results = extractText(code, "teste template 2");
+  expect(results).toMatchSnapshot();
+});
 
 test("README", () => {
-    const code = `import React from 'react'
+  const code = `import React from 'react'
 
     export default function (props) {
         var value = {
@@ -90,14 +81,13 @@ test("README", () => {
             <input type="text" placeholder="Nome do usuário"/>
         </div>
     }
-    `
-    const results = extractText(code, "README.md")
-    expect(results).toMatchSnapshot()
-})
-
+    `;
+  const results = extractText(code, "README.md");
+  expect(results).toMatchSnapshot();
+});
 
 test("últimas 24 horas", () => {
-    const code = `import React from 'react'
+  const code = `import React from 'react'
 
     export default function (props) {
         return <div className="my-ignored-classname">
@@ -105,18 +95,18 @@ test("últimas 24 horas", () => {
             <div>12 Horas</div>
         </div>
     }
-    `
-    const results = extractText(code, "README.md")
-    expect(results).toMatchObject({
-        strings: {
-            '12-horas': '12 Horas',
-            'ultimas-24-horas': 'Últimas 24 horas'
-        }
-    })
-})
+    `;
+  const results = extractText(code, "README.md");
+  expect(results).toMatchObject({
+    strings: {
+      "12-horas": "12 Horas",
+      "ultimas-24-horas": "Últimas 24 horas",
+    },
+  });
+});
 
 test("import type", () => {
-    const code = `import React from 'react'
+  const code = `import React from 'react'
     import type * as B from 'module'
 
     export default function (props) {
@@ -125,25 +115,38 @@ test("import type", () => {
             <div>12 Horas</div>
         </div>
     }
-    `
-    const results = extractText(code, "typescript.tsx")
-    expect(results).toMatchObject({
-        strings: {
-            '12-horas': '12 Horas',
-            'ultimas-24-horas': 'Últimas 24 horas'
-        }
-    })
-})
+    `;
+  const results = extractText(code, "typescript.tsx");
+  expect(results).toMatchObject({
+    strings: {
+      "12-horas": "12 Horas",
+      "ultimas-24-horas": "Últimas 24 horas",
+    },
+  });
+});
 
+test("text template", () => {
+  const code = `const nights = 3; const x = \`i18n:\${nights} noites\`
 
-test.only("text template", () => {
-    const code = `const nights = 3; const x = \`i18n:\${nights} noites\`
+    `;
+  const results = extractText(code, "typescript.tsx");
+  expect(results).toMatchObject({
+    strings: {
+      noites_lowercase: "noites",
+    },
+  });
+});
 
-    `
-    const results = extractText(code, "typescript.tsx")
-    expect(results).toMatchObject({
-        strings: {
-            'noites_lowercase': 'noites'
-        }
-    })
-})
+test("teste /noite", () => {
+  const code = `import type * as T from 'modulename';
+    import React from 'react';
+    const nights = 4;
+    const x = () => <small className="text-muted">/noite</small>;`;
+
+  const results = extractText(code, "typescript.tsx");
+  expect(results).toMatchObject({
+    strings: {
+      noite_lowercase: "noite",
+    },
+  });
+});

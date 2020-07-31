@@ -120,3 +120,22 @@ const nights = 4;
 
 const x = () => <InputField type="text" placeholder="Lista de e-mails separados por coma (,)" hint="Lista de e-mails separados por coma (,)" />;`);
 });
+
+
+test("teste /noite", () => {
+  const example = `import type * as T from 'modulename';
+  import React from 'react';
+  const nights = 4;
+  const x = () => <small className="text-muted">/noite</small>;`
+
+  const { code } = babel.transform(example, {
+    filename: "test.tsx",
+    configFile: false,
+    plugins: [[plugin, { locale: "es" }]],
+  });
+  expect(code).toBe(`import type * as T from 'modulename';
+import React from 'react';
+const nights = 4;
+
+const x = () => <small className="text-muted">/noche</small>;`);
+});
