@@ -1,21 +1,22 @@
 "use strict";
 
-const babel = require("@babel/core");
-const babelParser = require("@babel/parser");
-const generate = require("@babel/generator").default;
-const traverse = require("@babel/traverse").default;
-const loaderUtils = require("loader-utils");
-const promisify = require("bluebird").promisify;
-const babelPluginTranslate = require("../babel-plugin-i18n-translate");
+import { transformFromAstSync } from "@babel/core";
+// const babelParser = require("@babel/parser");
+import { parse, ParserOptions } from "@babel/parser";
+import traverse from "@babel/traverse";
+import { promisify } from "bluebird";
+import loaderUtils from "loader-utils";
+import babelPluginTranslate from "../babel-plugin-i18n-translate";
+import { loader } from "webpack";
 
-const notMatcher = matcher => {
-  return str => {
+const notMatcher = (matcher) => {
+  return (str) => {
     return !matcher(str);
   };
 };
 
-const orMatcher = items => {
-  return str => {
+const orMatcher = (items) => {
+  return (str) => {
     for (let i = 0; i < items.length; i++) {
       if (items[i](str)) return true;
     }
@@ -23,8 +24,8 @@ const orMatcher = items => {
   };
 };
 
-const andMatcher = items => {
-  return str => {
+const andMatcher = (items) => {
+  return (str) => {
     for (let i = 0; i < items.length; i++) {
       if (!items[i](str)) return false;
     }
@@ -35,7 +36,7 @@ const andMatcher = items => {
 function normalizeCondition(condition) {
   if (!condition) throw new Error("Expected condition but got falsy value");
   if (typeof condition === "string") {
-    return str => str.indexOf(condition) === 0;
+    return (str) => str.indexOf(condition) === 0;
   }
   if (typeof condition === "function") {
     return condition;
@@ -44,7 +45,7 @@ function normalizeCondition(condition) {
     return condition.test.bind(condition);
   }
   if (Array.isArray(condition)) {
-    const items = condition.map(c => normalizeCondition(c));
+    const items = condition.map((c) => normalizeCondition(c));
     return orMatcher(items);
   }
   if (typeof condition !== "object") {
@@ -58,7 +59,7 @@ function normalizeCondition(condition) {
   }
 
   const matchers = [];
-  Object.keys(condition).forEach(key => {
+  Object.keys(condition).forEach((key) => {
     const value = condition[key];
     switch (key) {
       case "or":
@@ -68,7 +69,7 @@ function normalizeCondition(condition) {
         break;
       case "and":
         if (value) {
-          const items = value.map(c => normalizeCondition(c));
+          const items = value.map((c) => normalizeCondition(c));
           matchers.push(andMatcher(items));
         }
         break;
@@ -93,13 +94,12 @@ function normalizeCondition(condition) {
 }
 
 function createVisitor(nodeProcessor) {
-  const t = babel.types;
   return {
     ImportDeclaration: function ImportDeclaration(path) {
       nodeProcessor(path.node.source);
     },
-    ExportDeclaration: function (path) {
-      if(path.node.source) {
+    ExportDeclaration: function(path) {
+      if (path.node.source) {
         nodeProcessor(path.node.source);
       }
     },
@@ -110,75 +110,60 @@ function createVisitor(nodeProcessor) {
       if (path.node.callee.name === "require") {
         nodeProcessor(path.node.arguments[0]);
       }
-    }
+    },
   };
 }
 
-module.exports = function(content, map, meta) {
-  var callback = this.async();
+const I18nLoader: loader.Loader = function(this, content, map) {
+  const callback = this.async();
+  const options = loaderUtils.getOptions(this);
+  const condition = normalizeCondition(options.conditions || (() => false));
+  const resolve = promisify(this.resolve);
+  const parserOpts: ParserOptions = {
+    plugins: options.parserPlugins || [
+      "jsx",
+      "dynamicImport",
+      "objectRestSpread",
+      "classProperties",
+      "optionalChaining",
+    ],
+    sourceType: "module",
+    sourceFilename: this.resource,
+  };
+  const ast = parse(content, parserOpts);
 
-  const asyncFunction = async content => {
-    // return 'HI'
-
-    var options = loaderUtils.getOptions(this);
-    const condition = normalizeCondition(options.conditions || (() => false));
-    const resolve = promisify(this.resolve);
-
-    const resources = {};
-    const parserOpts = {
-      sourceMaps: this.sourceMap,
-      plugins: options.parserPlugins || [
-        "jsx",
-        "dynamicImport",
-        "objectRestSpread",
-        "classProperties",
-        "optionalChaining"
-      ],
-      sourceType: "module",
-      sourceFilename: this.resource
+  const doStuff = async (content) => {
+    const promises = [];
+    const visitNode = async (node) => {
+      const request = node.value;
+      const resource = await resolve(this.context, request);
+      if (resource && condition(resource)) {
+        node.value = request + this.resourceQuery;
+      }
     };
-
-    var ast = babelParser.parse(content, parserOpts);
 
     //resolve all imports (async)
     traverse(
       ast,
-      createVisitor(node => {
-        const request = node.value;
-        resources[request] = resolve(this.context, request);
+      createVisitor((node) => {
+        promises.push(visitNode(node));
       })
     );
-
     //wait for all requests done
-    await Promise.all(
-      Object.keys(resources).map(async request => {
-        resources[request] = await resources[request];
-      })
-    );
-
-    //transform imports from ast
-    traverse(
-      ast,
-      createVisitor(
-        (node) => {
-          var request = node.value;
-          var resource = resources[node.value];
-          if (resource && condition(resource)) {
-            node.value = request + this.resourceQuery;
-          }
-        }
-      )
-    );
+    await Promise.all(promises);
 
     //generate code
     //   return generate(ast, { sourceMaps: this.sourceMap }, content)
-    return babel.transformFromAstSync(ast, content, {
+    return transformFromAstSync(ast, content, {
       configFile: false,
-      plugins: [[babelPluginTranslate, { locale: options.locale }]]
+      plugins: [[babelPluginTranslate, { locale: options.locale }]],
     });
   };
 
-  asyncFunction(content)
-    .then(({ code, map }) => callback(null, code, map, meta))
-    .catch(err => callback(err));
+  doStuff(content)
+    .then(({ code, map }) => callback(null, code, map))
+    .catch((err) => callback(err));
 };
+I18nLoader.raw = false
+
+module.exports = I18nLoader;

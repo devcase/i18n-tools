@@ -8,20 +8,19 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
-var babel = require("@babel/core");
+var _core = require("@babel/core");
 
-var babelParser = require("@babel/parser");
+var _parser = require("@babel/parser");
 
-var generate = require("@babel/generator")["default"];
+var _traverse = _interopRequireDefault(require("@babel/traverse"));
 
-var traverse = require("@babel/traverse")["default"];
+var _bluebird = require("bluebird");
 
-var loaderUtils = require("loader-utils");
+var _loaderUtils = _interopRequireDefault(require("loader-utils"));
 
-var promisify = require("bluebird").promisify;
+var _babelPluginI18nTranslate = _interopRequireDefault(require("../babel-plugin-i18n-translate"));
 
-var babelPluginTranslate = require("../babel-plugin-i18n-translate");
-
+// const babelParser = require("@babel/parser");
 var notMatcher = function notMatcher(matcher) {
   return function (str) {
     return !matcher(str);
@@ -124,7 +123,6 @@ function normalizeCondition(condition) {
 }
 
 function createVisitor(nodeProcessor) {
-  var t = babel.types;
   return {
     ImportDeclaration: function ImportDeclaration(path) {
       nodeProcessor(path.node.source);
@@ -146,60 +144,60 @@ function createVisitor(nodeProcessor) {
   };
 }
 
-module.exports = function (content, map, meta) {
+var I18nLoader = function I18nLoader(content, map) {
   var _this = this;
 
   var callback = this.async();
 
-  var asyncFunction =
+  var options = _loaderUtils["default"].getOptions(this);
+
+  var condition = normalizeCondition(options.conditions || function () {
+    return false;
+  });
+  var resolve = (0, _bluebird.promisify)(this.resolve);
+  var parserOpts = {
+    plugins: options.parserPlugins || ["jsx", "dynamicImport", "objectRestSpread", "classProperties", "optionalChaining"],
+    sourceType: "module",
+    sourceFilename: this.resource
+  };
+  var ast = (0, _parser.parse)(content, parserOpts);
+
+  var doStuff =
   /*#__PURE__*/
   function () {
     var _ref = (0, _asyncToGenerator2["default"])(
     /*#__PURE__*/
     _regenerator["default"].mark(function _callee2(content) {
-      var options, condition, resolve, resources, parserOpts, ast;
+      var promises, visitNode;
       return _regenerator["default"].wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              // return 'HI'
-              options = loaderUtils.getOptions(_this);
-              condition = normalizeCondition(options.conditions || function () {
-                return false;
-              });
-              resolve = promisify(_this.resolve);
-              resources = {};
-              parserOpts = {
-                sourceMaps: _this.sourceMap,
-                plugins: options.parserPlugins || ["jsx", "dynamicImport", "objectRestSpread", "classProperties", "optionalChaining"],
-                sourceType: "module",
-                sourceFilename: _this.resource
-              };
-              ast = babelParser.parse(content, parserOpts); //resolve all imports (async)
+              promises = [];
 
-              traverse(ast, createVisitor(function (node) {
-                var request = node.value;
-                resources[request] = resolve(_this.context, request);
-              })); //wait for all requests done
-
-              _context2.next = 9;
-              return Promise.all(Object.keys(resources).map(
+              visitNode =
               /*#__PURE__*/
               function () {
                 var _ref2 = (0, _asyncToGenerator2["default"])(
                 /*#__PURE__*/
-                _regenerator["default"].mark(function _callee(request) {
+                _regenerator["default"].mark(function _callee(node) {
+                  var request, resource;
                   return _regenerator["default"].wrap(function _callee$(_context) {
                     while (1) {
                       switch (_context.prev = _context.next) {
                         case 0:
-                          _context.next = 2;
-                          return resources[request];
-
-                        case 2:
-                          resources[request] = _context.sent;
+                          request = node.value;
+                          _context.next = 3;
+                          return resolve(_this.context, request);
 
                         case 3:
+                          resource = _context.sent;
+
+                          if (resource && condition(resource)) {
+                            node.value = request + _this.resourceQuery;
+                          }
+
+                        case 5:
                         case "end":
                           return _context.stop();
                       }
@@ -207,31 +205,28 @@ module.exports = function (content, map, meta) {
                   }, _callee);
                 }));
 
-                return function (_x2) {
+                return function visitNode(_x2) {
                   return _ref2.apply(this, arguments);
                 };
-              }()));
+              }(); //resolve all imports (async)
 
-            case 9:
-              //transform imports from ast
-              traverse(ast, createVisitor(function (node) {
-                var request = node.value;
-                var resource = resources[node.value];
 
-                if (resource && condition(resource)) {
-                  node.value = request + _this.resourceQuery;
-                }
-              })); //generate code
-              //   return generate(ast, { sourceMaps: this.sourceMap }, content)
+              (0, _traverse["default"])(ast, createVisitor(function (node) {
+                promises.push(visitNode(node));
+              })); //wait for all requests done
 
-              return _context2.abrupt("return", babel.transformFromAstSync(ast, content, {
+              _context2.next = 5;
+              return Promise.all(promises);
+
+            case 5:
+              return _context2.abrupt("return", (0, _core.transformFromAstSync)(ast, content, {
                 configFile: false,
-                plugins: [[babelPluginTranslate, {
+                plugins: [[_babelPluginI18nTranslate["default"], {
                   locale: options.locale
                 }]]
               }));
 
-            case 11:
+            case 6:
             case "end":
               return _context2.stop();
           }
@@ -239,16 +234,19 @@ module.exports = function (content, map, meta) {
       }, _callee2);
     }));
 
-    return function asyncFunction(_x) {
+    return function doStuff(_x) {
       return _ref.apply(this, arguments);
     };
   }();
 
-  asyncFunction(content).then(function (_ref3) {
+  doStuff(content).then(function (_ref3) {
     var code = _ref3.code,
         map = _ref3.map;
-    return callback(null, code, map, meta);
+    return callback(null, code, map);
   })["catch"](function (err) {
     return callback(err);
   });
 };
+
+I18nLoader.raw = false;
+module.exports = I18nLoader;
