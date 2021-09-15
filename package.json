@@ -62,7 +62,7 @@
     "mkdirp": "^0.5.1",
     "output-file-sync": "^2.0.1",
     "regenerator-runtime": "^0.12.1",
-    "set-value": "^2.0.1",
+    "set-value": "^4.0.1",
     "typescript": "^3.9.2"
   },
   "engines": {
